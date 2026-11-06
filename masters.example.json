@@ -1,0 +1,20 @@
+{
+ "seller": {
+  "name": "Demo Traders Pvt Ltd",
+  "gstin": "07AAACD0000A1ZX",
+  "pincode": "110001"
+ },
+ "parties": {
+  "sharma enterprises": {
+   "gstin": "07AAACS0000A1ZI",
+   "pincode": "110002"
+  },
+  "patel industries": {
+   "gstin": "24AAACP0000A1ZP",
+   "pincode": "380001"
+  }
+ },
+ "hsn_rates": {
+  "8471": 18
+ }
+}

@@ -1,0 +1,7 @@
+# Never commit client data or secrets
+masters.json
+ledger.db
+out/
+.env
+__pycache__/
+*.pyc

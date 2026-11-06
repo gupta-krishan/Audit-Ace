@@ -1,0 +1,1 @@
+{"party_name":"Patel Industries","doc_type":"invoice","date":"2026-11-06","items":[{"description":"Laptop","hsn":"8471","qty":2,"unit":"NOS","rate":45000.5,"gst_rate":18}],"transport":{"distance_km":950,"vehicle_no":"DL1CAB1234"}}
