@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CA-Agent: GST Invoicing</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--ink:#1c2430;--mut:#667085;--line:#e4e7ec;--pri:#1f5eff;--okc:#067647;--warn:#b54708;--bad:#b42318}
+@media(prefers-color-scheme:dark){:root{--bg:#0f1318;--card:#171c23;--ink:#e8ecf1;--mut:#9aa4b2;--line:#2a313b;--pri:#6c93ff;--okc:#47c27e;--warn:#f0a35c;--bad:#f27a70}}
+*{box-sizing:border-box}body{margin:0;font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--ink)}
+header{background:var(--card);border-bottom:1px solid var(--line);padding:12px 16px;position:sticky;top:0;z-index:5}
+header h1{font-size:18px;margin:0 0 8px}nav{display:flex;gap:6px;flex-wrap:wrap}
+nav button{background:none;border:1px solid var(--line);color:var(--ink);padding:6px 12px;border-radius:8px;cursor:pointer}
+nav button.on{background:var(--pri);color:#fff;border-color:var(--pri)}
+main{max-width:1000px;margin:0 auto;padding:16px}.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:16px}
+h2{margin:0 0 12px;font-size:18px}h3{margin:16px 0 8px;font-size:15px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+label{display:flex;flex-direction:column;font-size:13px;color:var(--mut);gap:4px}
+input,select{padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font:inherit;min-width:0;width:100%}
+button.b{padding:8px 14px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;font:inherit}
+button.pri{background:var(--pri);color:#fff;border-color:var(--pri)}button:disabled{opacity:.5}
+.scroll{overflow-x:auto}table{border-collapse:collapse;width:100%}th,td{padding:6px;text-align:left;border-bottom:1px solid var(--line);font-size:14px}
+td input{min-width:70px}td:first-child input{min-width:160px}
+.page{display:none}.page.on{display:block}.note{color:var(--mut);font-size:13px}
+.w{background:#fff4e5;color:#7a4100;border-left:4px solid var(--warn);padding:8px 12px;margin:6px 0;border-radius:6px}
+.ok{background:#e7f6ee;color:#05603a;border-left:4px solid var(--okc);padding:8px 12px;margin:6px 0;border-radius:6px}
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin:12px 0}
+.metrics div{border:1px solid var(--line);border-radius:10px;padding:8px 12px}.metrics small{color:var(--mut);display:block}.metrics b{font-size:17px}
+iframe{width:100%;height:420px;border:1px solid var(--line);border-radius:8px;background:#fff}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.banner{background:#e8f0ff;color:#1b3a8a;padding:8px 16px;font-size:13px;text-align:center}
+</style></head><body>
+<div class="banner">🔒 Your data stays in this browser only; nothing is sent to any server. Download a backup regularly (Settings).</div>
+<header><h1>🧾 CA-Agent <span class="note">GST invoices, credit/debit notes, e-way bill JSON</span></h1>
+<nav id="nav"><button data-p="new" class="on">New document</button><button data-p="reg">Sales register</button><button data-p="docs">Documents</button><button data-p="set">Settings</button></nav></header>
+<main>
+<section id="p-new" class="page on">
+ <div class="card"><h2>New document</h2>
+  <div class="grid">
+   <label>Party<select id="party"></select></label>
+   <label>Type<select id="type"><option value="invoice">Invoice</option><option value="credit_note">Credit note</option><option value="debit_note">Debit note</option></select></label>
+   <label>Date<input type="date" id="date"></label>
+   <label class="cn" hidden>Original invoice no.<input id="orig" placeholder="INV/26-27/0001"></label>
+   <label class="cn" hidden>Reason<input id="reason" placeholder="Sales return / price difference"></label>
+  </div>
+  <h3>Items</h3><div class="scroll"><table id="items"></table></div>
+  <div class="row"><button class="b" id="addRow">+ Add item</button></div>
+  <p class="note">Leave GST % blank to use your HSN rate table (Settings).</p>
+  <h3>Transport (needed for e-way bill when invoice value is above ₹50,000)</h3>
+  <div class="grid"><label>Distance (km)<input type="number" id="km" min="0"></label><label>Vehicle no.<input id="veh"></label><label>Transporter GSTIN (optional)<input id="trn"></label></div>
+  <div class="row"><button class="b pri" id="preview">Preview</button></div>
+ </div>
+ <div id="previewBox"></div><div id="savedBox"></div>
+</section>
+<section id="p-reg" class="page"><div class="card"><h2>Sales register <span class="note">(credit notes subtracted)</span></h2><div id="regBox"></div></div></section>
+<section id="p-docs" class="page"><div class="card"><h2>Documents</h2><div id="docList"></div></div><div id="docView"></div></section>
+<section id="p-set" class="page">
+ <div class="card"><h2>Your business</h2><div class="grid">
+  <label>Business name<input id="s-name"></label><label>GSTIN<input id="s-gstin"></label><label>Pincode<input id="s-pin" inputmode="numeric" maxlength="6"></label><label>City / place<input id="s-place"></label><label>Address<input id="s-addr"></label></div>
+  <h3>Printed on invoices (optional)</h3><div class="grid"><label>Bank name<input id="s-bn"></label><label>A/c no.<input id="s-ac"></label><label>IFSC<input id="s-ifsc"></label><label>Branch<input id="s-br"></label><label>Terms / note<input id="s-terms"></label></div><p class="note">Bank details are printed on every invoice you create.</p>
+  <h3>Parties (customers)</h3><div class="scroll"><table id="parties"></table></div><div class="row"><button class="b" id="addParty">+ Add party</button></div>
+  <h3>HSN → GST rate table <span class="note">(your source of truth)</span></h3><div class="scroll"><table id="hsn"></table></div><div class="row"><button class="b" id="addHsn">+ Add HSN</button></div>
+  <div class="row"><button class="b pri" id="saveSet">Save settings</button></div><div id="setMsg"></div></div>
+ <div class="card"><h2>Backup &amp; safety</h2>
+  <p class="note">Data lives in this browser. Clearing browser data or switching device loses it, so back up.</p>
+  <div class="row"><button class="b" id="export">Download backup</button><label class="b" style="flex-direction:row;cursor:pointer">Restore backup<input type="file" id="import" accept=".json" hidden></label>
+  <button class="b" id="verify">Verify audit log</button><button class="b" id="wipe" style="color:var(--bad)">Erase all data</button></div><div id="safeMsg"></div></div>
+</section>
+</main>
+<script>
+/*ENGINE*/
+const VALID=new Set([0,0.25,3,5,18,40]),EWAY_LIMIT=5000000;
+const UQC=["NOS","PCS","PRS","SET","BOX","PAC","DOZ","KGS","GMS","LTR","MLT","MTR","SQM","SQF","BAG","BTL","CTN","ROL","TON","UNT","OTH"],UQCS=new Set(UQC);
+const STATES={"01":"Jammu & Kashmir","02":"Himachal Pradesh","03":"Punjab","04":"Chandigarh","05":"Uttarakhand","06":"Haryana","07":"Delhi","08":"Rajasthan","09":"Uttar Pradesh","10":"Bihar","11":"Sikkim","12":"Arunachal Pradesh","13":"Nagaland","14":"Manipur","15":"Mizoram","16":"Tripura","17":"Meghalaya","18":"Assam","19":"West Bengal","20":"Jharkhand","21":"Odisha","22":"Chhattisgarh","23":"Madhya Pradesh","24":"Gujarat","26":"Dadra & Nagar Haveli and Daman & Diu","27":"Maharashtra","29":"Karnataka","30":"Goa","31":"Lakshadweep","32":"Kerala","33":"Tamil Nadu","34":"Puducherry","35":"Andaman & Nicobar Islands","36":"Telangana","37":"Andhra Pradesh","38":"Ladakh","97":"Other Territory","99":"Centre Jurisdiction"};
+const PIN2={11:"07",12:"06",13:"06",17:"02",30:"08",31:"08",32:"08",33:"08",34:"08",36:"24",37:"24",38:"24",39:"24",40:"27",41:"27",42:"27",43:"27",44:"27",45:"23",46:"23",47:"23",48:"23",56:"29",57:"29",58:"29",59:"29",70:"19",71:"19",72:"19",73:"19",74:"19"};
+function pinState(p){if(!/^\d{6}$/.test(p||""))return null;if(p.startsWith("403"))return"30";if(p.startsWith("737"))return null;return PIN2[+p.slice(0,2)]||null}
+const MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const fmtDate=s=>{const[y,m,d]=s.split("-");return d+"-"+MON[+m-1]+"-"+y};
+function words(n){const a=["","One","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten","Eleven","Twelve","Thirteen","Fourteen","Fifteen","Sixteen","Seventeen","Eighteen","Nineteen"],b=["","","Twenty","Thirty","Forty","Fifty","Sixty","Seventy","Eighty","Ninety"];
+ const two=x=>x<20?a[x]:b[Math.floor(x/10)]+(x%10?" "+a[x%10]:""),three=x=>(x>=100?a[Math.floor(x/100)]+" Hundred"+(x%100?" ":""):"")+(x%100?two(x%100):"");
+ if(n===0)return"Zero";let s="";const cr=Math.floor(n/1e7);n%=1e7;const lk=Math.floor(n/1e5);n%=1e5;const th=Math.floor(n/1e3);n%=1e3;
+ if(cr)s+=words(cr)+" Crore ";if(lk)s+=two(lk)+" Lakh ";if(th)s+=two(th)+" Thousand ";if(n)s+=three(n);return s.trim()}
+const inrWords=p=>{const r=Math.floor(p/100),ps=p%100;return"INR "+words(r)+(ps?" and "+words(ps)+" Paise":"")+" Only"};
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const inr=p=>(p/100).toLocaleString("en-IN",{minimumFractionDigits:2,maximumFractionDigits:2});
+const roundHU=x=>Math.floor(x+0.5+1e-9);
+function gstinOk(g){if(!/^\d{2}[A-Z]{5}\d{4}[A-Z][1-9A-Z]Z[0-9A-Z]$/.test(g||""))return false;const cs="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";let s=0;
+ for(let i=0;i<14;i++){const p=cs.indexOf(g[i])*(i%2?2:1);s+=Math.floor(p/36)+p%36}return cs[(36-s%36)%36]===g[14]}
+function fyOf(d){const y=+d.slice(0,4),mo=+d.slice(5,7),st=mo>=4?y:y-1,p=n=>String(n%100).padStart(2,"0");return{label:p(st)+"-"+p(st+1),end:st+1}}
+const GRE=/^\d{2}[A-Z]{5}\d{4}[A-Z][1-9A-Z]Z[0-9A-Z]$/;
+const stateOf=p=>p.gstin?p.gstin.slice(0,2):(p.state||"");
+function compute(doc,m,docs){
+ const warn=[],seller=m.seller,party=m.parties[doc.party_name.trim().toLowerCase()];
+ if(!party)throw new Error("Party not found in Settings: "+doc.party_name);
+ if(!GRE.test(seller.gstin||""))throw new Error("Your business GSTIN is missing or malformed. Fix it in Settings.");
+ if(party.gstin){if(!GRE.test(party.gstin))throw new Error("Party GSTIN format is invalid: "+party.gstin+". Fix it in Settings.");if(!gstinOk(party.gstin))warn.push("Party GSTIN "+party.gstin+" fails checksum")}
+ else if(!/^\d{2}$/.test(party.state||""))throw new Error("This party has no GSTIN. Enter its 2-digit state code in Settings (e.g. 07 for Delhi).");
+ const sc=seller.gstin.slice(0,2),pcs=stateOf(party);
+ if(!STATES[sc])throw new Error("Your GSTIN has an unknown state code: "+sc);
+ if(!STATES[pcs])throw new Error("Unknown state code '"+pcs+"' for this party.");
+ if(!gstinOk(seller.gstin))warn.push("Your GSTIN "+seller.gstin+" fails checksum");
+ const sp=pinState(seller.pincode);
+ if(sp&&sp!==sc)warn.push("Your pincode "+seller.pincode+" is in "+STATES[sp]+" ("+sp+") but your GSTIN state code is "+sc+" ("+STATES[sc]+"). Check your GSTIN: it decides IGST vs CGST+SGST.");
+ const bp=pinState(party.pincode);
+ if(bp&&bp!==pcs)warn.push("Party pincode "+party.pincode+" is in "+STATES[bp]+" ("+bp+") but its state code is "+pcs+" ("+STATES[pcs]+"). Check place of supply.");
+ const inter=sc!==pcs,lines=[];let T=0,C=0,S=0,I=0;
+ for(const it of doc.items){
+  const nm="'"+it.description+"'";
+  if(!(it.qty>0))throw new Error("Quantity must be more than 0 for "+nm);
+  if(!(it.rate>=0))throw new Error("Enter a rate for "+nm);
+  const disc=+it.disc||0;if(disc<0||disc>100)throw new Error("Discount must be between 0 and 100% for "+nm);
+  if(!UQCS.has(it.unit))throw new Error("Choose a valid unit (UQC) for "+nm+": '"+it.unit+"' is not one");
+  if(it.hsn&&!/^(\d{4}|\d{6}|\d{8})$/.test(it.hsn))throw new Error("HSN for "+nm+" must be 4, 6 or 8 digits");
+  let rate=it.gst_rate!=null?+it.gst_rate:(m.hsn_rates&&m.hsn_rates[it.hsn]!=null?+m.hsn_rates[it.hsn]:null);
+  if(rate==null||isNaN(rate)||rate<0)throw new Error("Enter GST % for "+nm+", or add its HSN to the rate table in Settings.");
+  if(!VALID.has(rate))warn.push(nm+": GST rate "+rate+"% is not a current standard slab (0, 0.25, 3, 5, 18, 40). REVIEW");
+  if(!it.hsn)warn.push(nm+": HSN missing");
+  if(/^6[12]/.test(it.hsn||"")&&doc.date>="2025-09-22"){const net=it.rate*(1-disc/100),exp=net>2500?18:5;
+   if(rate!==exp)warn.push(nm+": apparel (HSN chapters 61/62) is taxed at 5% up to ₹2,500 per piece and 18% above, from 22-Sep-2025. At ₹"+net.toFixed(2)+" per "+it.unit+" the expected rate is "+exp+"% but "+rate+"% is entered.")}
+  const tx=roundHU(it.qty*it.rate*(1-disc/100)*100);let c=0,s=0,i=0;
+  if(inter)i=roundHU(tx*rate/100);else{c=s=roundHU(tx*rate/200)}
+  lines.push({...it,disc,gst_rate:rate,taxable:tx,cgst:c,sgst:s,igst:i});T+=tx;C+=c;S+=s;I+=i}
+ const gross=T+C+S+I,total=roundHU(gross/100)*100;
+ if(doc.doc_type!=="invoice"){
+  const ref=docs.find(x=>x.no===doc.original_invoice_no&&x.type==="invoice");
+  if(!ref)warn.push("Original invoice not found in your records (needed for credit/debit note, Sec 34 CGST)");
+  else if(doc.date>fyOf(ref.date).end+"-11-30")warn.push("Past 30 Nov following the FY of the original invoice: credit note not allowed / ITC reversal applies")}
+ else if(total>EWAY_LIMIT){
+  if(!(doc.transport&&doc.transport.distance_km))warn.push("Value above ₹50,000: add transport distance/vehicle to generate an e-way bill");
+  else if(!seller.place||!party.place)warn.push("E-way bill needs the city/place for you and the party. Add it in Settings.")}
+ const orig=doc.original_invoice_no?docs.find(x=>x.no===doc.original_invoice_no):null;
+ return{type:doc.doc_type,date:doc.date,seller,party,party_name:doc.party_name,original_invoice_no:doc.original_invoice_no,original_date:orig?orig.date:null,reason:doc.reason,inter,lines,
+  taxable:T,cgst:C,sgst:S,igst:I,round_off:total-gross,total,transport:doc.transport,warnings:warn}}
+function nextNo(type,date,docs){const pre={invoice:"INV",credit_note:"CN",debit_note:"DN"}[type],fy=fyOf(date).label,re=new RegExp("^"+pre+"/"+fy+"/(\\d+)$");
+ let mx=0;for(const d of docs){const r=re.exec(d.no);if(r)mx=Math.max(mx,+r[1])}return pre+"/"+fy+"/"+String(mx+1).padStart(4,"0")}
+function eway(d){if(d.type!=="invoice"||d.total<=EWAY_LIMIT||!(d.transport&&d.transport.distance_km))return null;
+ const s=d.seller,p=d.party,t=d.transport,r=x=>x/100,dd=d.date.split("-").reverse().join("/");
+ return{version:"1.0.0621",billLists:[{userGstin:s.gstin,supplyType:"O",subSupplyType:1,docType:"INV",docNo:d.no,docDate:dd,
+  fromGstin:s.gstin,fromTrdName:s.name,fromAddr1:(s.address||"").slice(0,120),fromPlace:s.place||"",fromPincode:+s.pincode,fromStateCode:+s.gstin.slice(0,2),actFromStateCode:+s.gstin.slice(0,2),
+  toGstin:p.gstin||"URP",toTrdName:d.party_name,toAddr1:(p.address||"").slice(0,120),toPlace:p.place||"",toPincode:+p.pincode,toStateCode:+stateOf(p),actToStateCode:+stateOf(p),
+  totalValue:r(d.taxable),cgstValue:r(d.cgst),sgstValue:r(d.sgst),igstValue:r(d.igst),cessValue:0,totInvValue:r(d.total),
+  transMode:1,transDistance:+t.distance_km,transporterId:t.transporter_id||"",vehicleNo:t.vehicle_no||"",vehicleType:"R",transactionType:1,
+  itemList:d.lines.map(l=>({productName:l.description,hsnCode:/^\d+$/.test(l.hsn||"")?+l.hsn:0,quantity:l.qty,qtyUnit:l.unit||"NOS",taxableAmount:r(l.taxable),
+   cgstRate:d.inter?0:l.gst_rate/2,sgstRate:d.inter?0:l.gst_rate/2,igstRate:d.inter?l.gst_rate:0,cessRate:0}))}]}}
+function invoiceHTML(d,copies){copies=copies||["ORIGINAL FOR RECIPIENT"];
+ const T={invoice:"Tax Invoice",credit_note:"Credit Note",debit_note:"Debit Note"}[d.type],s=d.seller,p=d.party,pan=s.gstin.slice(2,12),sc=s.gstin.slice(0,2),pc=stateOf(p);
+ const hs={};for(const l of d.lines){const k=(l.hsn||"-")+"|"+l.gst_rate,r=hs[k]=hs[k]||{hsn:l.hsn||"-",rate:l.gst_rate,tx:0,c:0,s:0,i:0};r.tx+=l.taxable;r.c+=l.cgst;r.s+=l.sgst;r.i+=l.igst}
+ const H=Object.values(hs),units=[...new Set(d.lines.map(l=>l.unit))],tq=d.lines.reduce((x,l)=>x+l.qty,0),taxTot=d.cgst+d.sgst+d.igst;
+ const addr=x=>(x.address?esc(x.address)+"<br>":"")+esc((x.place?x.place+" - ":"")+(x.pincode||""));
+ const party=`<b>${esc(d.party_name)}</b><br>${addr(p)}<br>GSTIN/UIN : ${esc(p.gstin||"Unregistered")}<br>State Name : ${esc(STATES[pc])}, Code : ${esc(pc)}`;
+ const rows=d.lines.map((l,i)=>`<tr><td class=c>${i+1}</td><td><b>${esc(l.description)}</b></td><td class=c>${esc(l.hsn||"")}</td><td class=r><b>${l.qty} ${esc(l.unit)}</b></td><td class=r>${inr(Math.round(l.rate*100))}</td><td class=c>${esc(l.unit)}</td><td class=r>${l.disc?l.disc+" %":""}</td><td class=r><b>${inr(l.taxable)}</b></td></tr>`).join("");
+ const taxRows=(d.inter?[["IGST",d.igst]]:[["CGST",d.cgst],["SGST",d.sgst]]).map(([n,v])=>`<tr><td></td><td class=r><b><i>${n}</i></b></td><td></td><td></td><td></td><td></td><td></td><td class=r><b>${inr(v)}</b></td></tr>`).join("")+(d.round_off?`<tr><td></td><td class=r><i>Round Off</i></td><td></td><td></td><td></td><td></td><td></td><td class=r>${d.round_off<0?"(-)":""}${inr(Math.abs(d.round_off))}</td></tr>`:"");
+ const hsnRows=H.map(r=>d.inter?`<tr><td>${esc(r.hsn)}</td><td class=r>${inr(r.tx)}</td><td class=r>${r.rate}%</td><td class=r>${inr(r.i)}</td><td class=r>${inr(r.i)}</td></tr>`
+  :`<tr><td>${esc(r.hsn)}</td><td class=r>${inr(r.tx)}</td><td class=r>${r.rate/2}%</td><td class=r>${inr(r.c)}</td><td class=r>${r.rate/2}%</td><td class=r>${inr(r.s)}</td><td class=r>${inr(r.c+r.s)}</td></tr>`).join("");
+ const hsnHead=d.inter?"<tr><th rowspan=2>HSN/SAC</th><th rowspan=2>Taxable Value</th><th colspan=2>Integrated Tax</th><th rowspan=2>Total Tax Amount</th></tr><tr><th>Rate</th><th>Amount</th></tr>"
+  :"<tr><th rowspan=2>HSN/SAC</th><th rowspan=2>Taxable Value</th><th colspan=2>Central Tax</th><th colspan=2>State Tax</th><th rowspan=2>Total Tax Amount</th></tr><tr><th>Rate</th><th>Amount</th><th>Rate</th><th>Amount</th></tr>";
+ const hsnTot=d.inter?`<tr class=tt><td class=r>Total</td><td class=r>${inr(d.taxable)}</td><td></td><td class=r>${inr(d.igst)}</td><td class=r>${inr(d.igst)}</td></tr>`
+  :`<tr class=tt><td class=r>Total</td><td class=r>${inr(d.taxable)}</td><td></td><td class=r>${inr(d.cgst)}</td><td></td><td class=r>${inr(d.sgst)}</td><td class=r>${inr(taxTot)}</td></tr>`;
+ const bank=(s.bank_name||s.bank_ac)?`<div class=bk><b>Company's Bank Details</b><br>Bank Name : ${esc(s.bank_name||"")}<br>A/c No. : ${esc(s.bank_ac||"")}<br>Branch &amp; IFSC Code : ${esc(s.bank_branch||"")} ${esc(s.bank_ifsc||"")}</div>`:"";
+ const ref=d.type!=="invoice"?`<div class=kv><div><small>Against Invoice No.</small><b>${esc(d.original_invoice_no||"")}</b></div><div><small>Original Invoice Date</small><b>${d.original_date?fmtDate(d.original_date):""}</b></div></div>${d.reason?`<div class=kv><div style="grid-column:1/3"><small>Reason</small><b>${esc(d.reason)}</b></div></div>`:""}`:"";
+ const page=cp=>`<div class=pg><div class=hd><div></div><div class=ti>${T}</div><div class=cp>(${esc(cp)})</div></div>
+<div class=top><div class=l><div class=b><b>${esc(s.name)}</b><br>${addr(s)}<br>GSTIN/UIN : ${esc(s.gstin)}<br>State Name : ${esc(STATES[sc])}, Code : ${esc(sc)}<br>PAN : ${esc(pan)}</div>
+<div class=b><small>Consignee (Ship to)</small><br>${party}</div><div class="b nb"><small>Buyer (Bill to)</small><br>${party}</div></div>
+<div class=r2><div class=kv><div><small>${{invoice:"Invoice",credit_note:"Credit Note",debit_note:"Debit Note"}[d.type]} No.</small><b>${esc(d.no)}</b></div><div><small>Dated</small><b>${fmtDate(d.date)}</b></div></div>
+<div class=kv><div><small>Reverse Charge</small><b>No</b></div><div><small>Place of Supply</small><b>${esc(STATES[pc])} (${esc(pc)})</b></div></div>${ref}
+${d.transport&&d.transport.vehicle_no?`<div class=kv><div><small>Vehicle No.</small><b>${esc(d.transport.vehicle_no)}</b></div><div><small>Dispatch distance</small><b>${esc(d.transport.distance_km||"")} km</b></div></div>`:""}</div></div>
+<table class=it><tr><th style="width:4%">Sl No.</th><th>Description of Goods</th><th style="width:11%">HSN/SAC</th><th style="width:11%">Quantity</th><th style="width:10%">Rate</th><th style="width:6%">per</th><th style="width:7%">Disc. %</th><th style="width:14%">Amount</th></tr>
+${rows}${taxRows}<tr class=sp><td colspan=8></td></tr><tr class=tt><td></td><td class=r>Total</td><td></td><td class=r>${units.length===1?tq+" "+units[0]:""}</td><td></td><td></td><td></td><td class=r>₹ ${inr(d.total)}</td></tr></table>
+<div class=w1><div><small>Amount Chargeable (in words)</small><br><b>${inrWords(d.total)}</b></div><div class=r><i>E. &amp; O.E</i></div></div>
+<table class=hs>${hsnHead}${hsnRows}${hsnTot}</table>
+<div class=w1><div><small>Tax Amount (in words)</small> : <b>${inrWords(taxTot)}</b></div></div>
+<div class=ft><div class=fl><b><u>Declaration</u></b><br>We declare that this invoice shows the actual price of the goods described and that all particulars are true and correct.${s.terms?"<br><br>"+esc(s.terms):""}${bank}</div>
+<div class=fr><div>for <b>${esc(s.name)}</b></div><div class=sg>Authorised Signatory</div></div></div>
+<div class=jr>${s.place?"SUBJECT TO "+esc(s.place.toUpperCase())+" JURISDICTION<br>":""}This is a Computer Generated Invoice</div></div>`;
+ return`<!DOCTYPE html><html><head><meta charset="utf-8"><title>${esc(d.no)}</title><style>
+@page{size:A4;margin:0}*{box-sizing:border-box}body{margin:0;font:11px/1.35 Arial,Helvetica,sans-serif;color:#000;background:#fff}
+.pg{width:210mm;min-height:297mm;padding:10mm;page-break-after:always}.pg:last-child{page-break-after:auto}
+.hd{display:grid;grid-template-columns:1fr auto 1fr;align-items:end;margin-bottom:4px}.ti{font-size:16px;font-weight:bold;text-align:center}.cp{text-align:right;font-size:11px}
+small{font-size:9.5px;color:#222}.top{display:grid;grid-template-columns:1.15fr 1fr;border:1px solid #000;border-bottom:0}.l{border-right:1px solid #000}.b{padding:4px 6px;border-bottom:1px solid #000}.nb{border-bottom:0}
+.kv{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid #000;min-height:34px}.kv>div{padding:3px 6px;border-right:1px solid #000}.kv>div:last-child{border-right:0}.kv b{display:block}
+table{border-collapse:collapse;width:100%}.it th,.it td{border-left:1px solid #000;border-right:1px solid #000;padding:3px 5px;vertical-align:top}.it th{border:1px solid #000;text-align:center}.it{border:1px solid #000}
+.it tr.sp td{height:40px}.tt td{border-top:1px solid #000;border-bottom:1px solid #000;font-weight:bold}.r{text-align:right}.c{text-align:center}
+.w1{border:1px solid #000;border-top:0;padding:4px 6px;display:flex;justify-content:space-between}
+.hs{border:1px solid #000;border-top:0}.hs th,.hs td{border:1px solid #000;padding:2px 5px}.hs th{text-align:center}
+.ft{display:grid;grid-template-columns:1.2fr 1fr;border:1px solid #000;border-top:0}.fl{padding:6px;border-right:1px solid #000}.fr{padding:6px;text-align:right;display:flex;flex-direction:column;justify-content:space-between;min-height:90px}.sg{margin-top:36px}
+.bk{margin-top:8px}.jr{text-align:center;margin-top:8px;font-size:10px}</style></head><body>${copies.map(page).join("")}</body></html>`}
+/*END ENGINE*/
+
+const DEFAULT_MASTERS={seller:{name:"",gstin:"",pincode:"",address:"",place:""},parties:{},hsn_rates:{}};
+const LS={get(k,d){try{const v=JSON.parse(localStorage.getItem(k));return v==null?d:v}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){alert("Could not save: browser storage is blocked or full.")}}};
+let M=LS.get("caagent.masters",DEFAULT_MASTERS);if(M.seller&&M.seller.name==="Demo Traders Pvt Ltd"){M=JSON.parse(JSON.stringify(DEFAULT_MASTERS));LS.set("caagent.masters",M)}
+let DOCS=LS.get("caagent.docs",[]),AUD=LS.get("caagent.audit",[]);
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+const persist=()=>{LS.set("caagent.masters",M);LS.set("caagent.docs",DOCS);LS.set("caagent.audit",AUD)};
+async function sha(s){try{const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(s));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("")}catch(e){let h=5381;for(const c of s)h=(h*33^c.charCodeAt(0))>>>0;return"x"+h.toString(16)}}
+async function audit(action,no){const prev=AUD.length?AUD[AUD.length-1].hash:"genesis",ts=new Date().toISOString().slice(0,19);AUD.push({ts,action,no,hash:await sha(prev+"|"+ts+"|"+action+"|"+no)});}
+function dl(name,text,mime){const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([text],{type:mime}));a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),2000)}
+const fname=n=>n.replace(/\//g,"_");
+
+/* navigation */
+function show(p){$$(".page").forEach(e=>e.classList.toggle("on",e.id==="p-"+p));$$("#nav button").forEach(b=>b.classList.toggle("on",b.dataset.p===p));
+ if(p==="new")fillParties();if(p==="reg")renderReg();if(p==="docs")renderDocs();if(p==="set")renderSettings()}
+$("#nav").onclick=e=>{if(e.target.dataset.p)show(e.target.dataset.p)};
+
+const setupOk=()=>!!(M.seller.name&&GRE.test(M.seller.gstin||"")&&/^\d{6}$/.test(M.seller.pincode||""));
+const COPIES=["ORIGINAL FOR RECIPIENT","DUPLICATE FOR TRANSPORTER","TRIPLICATE FOR SUPPLIER"];
+function printDoc(d,copies){const w=window.open("","_blank");if(!w)return alert("Please allow pop-ups to print.");w.document.write(invoiceHTML(d,copies));w.document.close();w.focus();setTimeout(()=>w.print(),400)}
+/* new document */
+const newItem=()=>({description:"",hsn:"",qty:1,unit:"NOS",rate:"",disc:"",gst_rate:""});
+let items=[newItem()],pending=null;
+const fillParties=()=>{const k=Object.keys(M.parties),cur=$("#party").value;$("#party").innerHTML=k.map(n=>`<option value="${esc(n)}">${esc(n.replace(/\b\w/g,c=>c.toUpperCase()))}</option>`).join("");if(k.includes(cur))$("#party").value=cur};
+function renderItems(){$("#items").innerHTML="<tr><th>Description</th><th>HSN</th><th>Qty</th><th>Unit</th><th>Rate (₹)</th><th>Disc %</th><th>GST %</th><th></th></tr>"+
+ items.map((it,i)=>`<tr>${["description","hsn","qty","unit","rate","disc","gst_rate"].map(k=>k==="unit"?`<td><select data-i="${i}" data-k="unit">${UQC.map(u=>`<option${u===it.unit?" selected":""}>${u}</option>`).join("")}</select></td>`:`<td><input data-i="${i}" data-k="${k}" value="${esc(it[k])}" ${["qty","rate","disc","gst_rate"].includes(k)?'inputmode="decimal"':""}></td>`).join("")}<td><button class="b" data-del="${i}">✕</button></td></tr>`).join("")}
+$("#items").oninput=e=>{const t=e.target;if(t.dataset.k)items[+t.dataset.i][t.dataset.k]=t.value};
+$("#items").onclick=e=>{if(e.target.dataset.del!=null){items.splice(+e.target.dataset.del,1);if(!items.length)items.push(newItem());renderItems()}};
+$("#addRow").onclick=()=>{items.push(newItem());renderItems()};
+$("#type").onchange=()=>$$(".cn").forEach(e=>e.hidden=$("#type").value==="invoice");
+$("#preview").onclick=()=>{
+ $("#savedBox").innerHTML="";const box=$("#previewBox");
+ if(!setupOk())return box.innerHTML='<div class="w">First complete "Your business" in Settings (name, valid GSTIN, 6-digit pincode).</div>';
+ const num=v=>String(v).trim()===""?NaN:+v;
+ const its=items.filter(i=>i.description.trim()).map(i=>({description:i.description.trim(),hsn:String(i.hsn||"").trim(),qty:num(i.qty),unit:i.unit||"NOS",rate:num(i.rate),disc:String(i.disc).trim()===""?0:+i.disc,gst_rate:String(i.gst_rate).trim()===""?null:+i.gst_rate}));
+ if(!$("#party").value)return box.innerHTML='<div class="w">Add a party in Settings first.</div>';
+ if(!its.length)return box.innerHTML='<div class="w">Add at least one item.</div>';
+ if(!$("#date").value)return box.innerHTML='<div class="w">Choose a date.</div>';
+ const km=+$("#km").value||0;
+ try{pending=compute({party_name:$("#party").value,doc_type:$("#type").value,date:$("#date").value,original_invoice_no:$("#orig").value.trim()||null,reason:$("#reason").value.trim()||null,items:its,
+  transport:km?{distance_km:km,vehicle_no:$("#veh").value.trim(),transporter_id:$("#trn").value.trim()}:null},M,DOCS)}catch(err){return box.innerHTML='<div class="w">'+esc(err.message)+"</div>"}
+ const d=pending;d.no="DRAFT";
+ box.innerHTML=`<div class="card"><h2>Preview</h2>${d.warnings.map(w=>`<div class="w">${esc(w)}</div>`).join("")||'<div class="ok">No warnings.</div>'}
+ <div class="metrics"><div><small>Taxable</small><b>${inr(d.taxable)}</b></div><div><small>CGST</small><b>${inr(d.cgst)}</b></div><div><small>SGST</small><b>${inr(d.sgst)}</b></div><div><small>IGST</small><b>${inr(d.igst)}</b></div><div><small>Total ₹</small><b>${inr(d.total)}</b></div></div>
+ <iframe id="pv"></iframe>${d.warnings.length?'<p><label style="flex-direction:row;gap:8px;color:inherit"><input type="checkbox" id="ack" style="width:auto"> I have reviewed the warnings and approve this document</label></p>':""}
+ <div class="row"><button class="b pri" id="approve">✅ Approve &amp; Save</button></div></div>`;
+ $("#pv").srcdoc=invoiceHTML(d);
+ $("#approve").onclick=async()=>{if(d.warnings.length&&!$("#ack").checked)return alert("Please tick the review box first.");
+  d.no=nextNo(d.type,d.date,DOCS);DOCS.push(d);await audit("APPROVED",d.no);persist();box.innerHTML="";showSaved(d)}};
+function showSaved(d){const ew=eway(d),n=fname(d.no);$("#savedBox").innerHTML=`<div class="card"><div class="ok">Saved <b>${esc(d.no)}</b></div><div class="row">
+ <button class="b pri" id="d1">Download invoice (HTML)</button><button class="b" id="d2">Print / Save as PDF</button>${d.type==="invoice"?'<button class="b" id="d6">Print 3 copies</button>':""}<button class="b" id="d3">Download JSON</button>${ew?'<button class="b" id="d4">Download e-way bill JSON</button>':""}<button class="b" id="d5">Create another</button></div></div>`;
+ $("#d1").onclick=()=>dl(n+".html",invoiceHTML(d),"text/html");$("#d3").onclick=()=>dl(n+".json",JSON.stringify(d,null,1),"application/json");
+ $("#d2").onclick=()=>printDoc(d,[COPIES[0]]);if(d.type==="invoice")$("#d6").onclick=()=>printDoc(d,COPIES);
+ if(ew)$("#d4").onclick=()=>dl(n+"_eway.json",JSON.stringify(ew,null,1),"application/json");
+ $("#d5").onclick=()=>{$("#savedBox").innerHTML="";items=[newItem()];renderItems();$("#orig").value=$("#reason").value="";$("#km").value=$("#veh").value=$("#trn").value=""}}
+
+/* register */
+function renderReg(){if(!DOCS.length){$("#regBox").innerHTML='<p class="note">No documents yet.</p>';return}
+ const sg={invoice:1,credit_note:-1,debit_note:1},agg={};
+ for(const d of DOCS)for(const l of d.lines){const r=agg[l.gst_rate]=agg[l.gst_rate]||[0,0,0,0];r[0]+=sg[d.type]*l.taxable;r[1]+=sg[d.type]*l.cgst;r[2]+=sg[d.type]*l.sgst;r[3]+=sg[d.type]*l.igst}
+ const ks=Object.keys(agg).sort((a,b)=>a-b),tot=[0,0,0,0];ks.forEach(k=>agg[k].forEach((v,i)=>tot[i]+=v));
+ $("#regBox").innerHTML=`<div class="scroll"><table><tr><th>GST %</th><th>Taxable</th><th>CGST</th><th>SGST</th><th>IGST</th></tr>${ks.map(k=>`<tr><td>${k}</td>${agg[k].map(v=>`<td>${inr(v)}</td>`).join("")}</tr>`).join("")}<tr><th>Total</th>${tot.map(v=>`<th>${inr(v)}</th>`).join("")}</tr></table></div><div class="row"><button class="b" id="csv">Download CSV</button></div>`;
+ $("#csv").onclick=()=>dl("register.csv","GST %,Taxable,CGST,SGST,IGST\n"+ks.map(k=>[k,...agg[k].map(v=>(v/100).toFixed(2))].join(",")).join("\n")+"\nTotal,"+tot.map(v=>(v/100).toFixed(2)).join(","),"text/csv")}
+
+/* documents */
+function renderDocs(){$("#docView").innerHTML="";const L=[...DOCS].sort((a,b)=>(b.date+b.no).localeCompare(a.date+a.no));
+ $("#docList").innerHTML=L.length?`<div class="scroll"><table><tr><th>No</th><th>Type</th><th>Date</th><th>Party</th><th>Total ₹</th><th></th></tr>${L.map(d=>`<tr><td>${esc(d.no)}</td><td>${esc(d.type.replace("_"," "))}</td><td>${d.date}</td><td>${esc(d.party_name)}</td><td>${inr(d.total)}</td><td><button class="b" data-v="${esc(d.no)}">View</button></td></tr>`).join("")}</table></div>`:'<p class="note">No documents yet.</p>'}
+$("#docList").onclick=e=>{const no=e.target.dataset.v;if(!no)return;const d=DOCS.find(x=>x.no===no),ew=eway(d),n=fname(no);
+ $("#docView").innerHTML=`<div class="card"><iframe id="dv"></iframe><div class="row"><button class="b pri" id="v1">Print / Save as PDF</button>${d.type==="invoice"?'<button class="b" id="v4">Print 3 copies</button>':""}<button class="b" id="v2">Download HTML</button>${ew?'<button class="b" id="v3">Download e-way bill JSON</button>':""}</div></div>`;
+ $("#dv").srcdoc=invoiceHTML(d);$("#v1").onclick=()=>printDoc(d,[COPIES[0]]);if(d.type==="invoice")$("#v4").onclick=()=>printDoc(d,COPIES);$("#v2").onclick=()=>dl(n+".html",invoiceHTML(d),"text/html");
+ if(ew)$("#v3").onclick=()=>dl(n+"_eway.json",JSON.stringify(ew,null,1),"application/json");$("#docView").scrollIntoView()};
+
+/* settings */
+let P=[],H=[];
+function renderSettings(){const s=M.seller;$("#s-name").value=s.name;$("#s-gstin").value=s.gstin;$("#s-pin").value=s.pincode;$("#s-place").value=s.place||"";$("#s-addr").value=s.address||"";$("#s-bn").value=s.bank_name||"";$("#s-ac").value=s.bank_ac||"";$("#s-ifsc").value=s.bank_ifsc||"";$("#s-br").value=s.bank_branch||"";$("#s-terms").value=s.terms||"";
+ P=Object.entries(M.parties).map(([k,v])=>({name:k,gstin:v.gstin||"",state:v.state||"",pincode:v.pincode||"",place:v.place||"",address:v.address||""}));H=Object.entries(M.hsn_rates||{}).map(([k,v])=>({hsn:k,rate:v}));drawP();drawH()}
+const drawP=()=>$("#parties").innerHTML="<tr><th>Name</th><th>GSTIN (blank if unregistered)</th><th>State code (if no GSTIN)</th><th>Pincode</th><th>City</th><th>Address</th><th></th></tr>"+P.map((p,i)=>`<tr>${["name","gstin","state","pincode","place","address"].map(k=>`<td><input data-pi="${i}" data-k="${k}" value="${esc(p[k])}"></td>`).join("")}<td><button class="b" data-pd="${i}">✕</button></td></tr>`).join("");
+const drawH=()=>$("#hsn").innerHTML="<tr><th>HSN</th><th>GST %</th><th></th></tr>"+H.map((h,i)=>`<tr>${["hsn","rate"].map(k=>`<td><input data-hi="${i}" data-k="${k}" value="${esc(h[k])}"></td>`).join("")}<td><button class="b" data-hd="${i}">✕</button></td></tr>`).join("");
+$("#parties").oninput=e=>{if(e.target.dataset.pi!=null)P[+e.target.dataset.pi][e.target.dataset.k]=e.target.value};
+$("#hsn").oninput=e=>{if(e.target.dataset.hi!=null)H[+e.target.dataset.hi][e.target.dataset.k]=e.target.value};
+$("#parties").onclick=e=>{if(e.target.dataset.pd!=null){P.splice(+e.target.dataset.pd,1);drawP()}};
+$("#hsn").onclick=e=>{if(e.target.dataset.hd!=null){H.splice(+e.target.dataset.hd,1);drawH()}};
+$("#addParty").onclick=()=>{P.push({name:"",gstin:"",state:"",pincode:"",place:"",address:""});drawP()};$("#addHsn").onclick=()=>{H.push({hsn:"",rate:""});drawH()};
+$("#saveSet").onclick=()=>{const parties={},bad=[];
+ P.filter(p=>p.name.trim()).forEach(p=>{parties[p.name.trim().toLowerCase()]={gstin:p.gstin.trim().toUpperCase(),state:p.state.trim(),pincode:p.pincode.trim(),place:p.place.trim(),address:p.address.trim()}});
+ const hsn={};H.filter(h=>String(h.hsn).trim()&&String(h.rate).trim()!=="").forEach(h=>hsn[String(h.hsn).trim()]=+h.rate);
+ M={seller:{name:$("#s-name").value.trim(),gstin:$("#s-gstin").value.trim().toUpperCase(),pincode:$("#s-pin").value.trim(),place:$("#s-place").value.trim(),address:$("#s-addr").value.trim(),bank_name:$("#s-bn").value.trim(),bank_ac:$("#s-ac").value.trim(),bank_ifsc:$("#s-ifsc").value.trim().toUpperCase(),bank_branch:$("#s-br").value.trim(),terms:$("#s-terms").value.trim()},parties,hsn_rates:hsn};persist();
+ if(!M.seller.name)bad.push("Business name is required");
+ if(!GRE.test(M.seller.gstin))bad.push("Your GSTIN is not a valid 15-character GSTIN");else if(!gstinOk(M.seller.gstin))bad.push("Your GSTIN fails the checksum. Please re-check it");
+ if(!/^\d{6}$/.test(M.seller.pincode))bad.push("Your pincode must be 6 digits");
+ Object.entries(parties).forEach(([k,v])=>{if(v.gstin){if(!GRE.test(v.gstin))bad.push(k+": invalid GSTIN format");else if(!gstinOk(v.gstin))bad.push(k+": GSTIN fails checksum")}else if(!/^\d{2}$/.test(v.state))bad.push(k+": enter GSTIN, or a 2-digit state code if unregistered")});
+ $("#setMsg").innerHTML=(bad.length?"":'<div class="ok">Saved. You are ready to create documents.</div>')+bad.map(b=>`<div class="w">${esc(b)}</div>`).join("")+(bad.length?'<div class="note">Saved, but fix the points above before creating documents.</div>':"");fillParties()};
+$("#export").onclick=()=>dl("ca-agent-backup-"+new Date().toISOString().slice(0,10)+".json",JSON.stringify({v:1,masters:M,docs:DOCS,audit:AUD}),"application/json");
+$("#import").onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const j=JSON.parse(await f.text());if(!j.masters||!j.docs)throw 0;if(!confirm("Replace ALL current data with this backup?"))return;M=j.masters;DOCS=j.docs;AUD=j.audit||[];persist();renderSettings();$("#safeMsg").innerHTML='<div class="ok">Backup restored.</div>'}catch(x){$("#safeMsg").innerHTML='<div class="w">Not a valid backup file.</div>'}e.target.value=""};
+$("#verify").onclick=async()=>{let prev="genesis";for(const a of AUD){if(a.hash!==await sha(prev+"|"+a.ts+"|"+a.action+"|"+a.no)){$("#safeMsg").innerHTML='<div class="w">Audit log FAILED verification (entry '+esc(a.no)+").</div>";return}prev=a.hash}$("#safeMsg").innerHTML=`<div class="ok">Audit log intact (${AUD.length} entries).</div>`};
+$("#wipe").onclick=()=>{if(prompt('This deletes all documents and settings from this browser. Type ERASE to confirm.')==="ERASE"){["masters","docs","audit"].forEach(k=>localStorage.removeItem("caagent."+k));location.reload()}};
+
+/* init */
+$("#date").value=new Date().toLocaleDateString("en-CA");renderItems();fillParties();
+if(!setupOk()){show("set");$("#setMsg").innerHTML='<div class="w">Welcome! Enter your business details and add your customers below to get started. Everything stays in this browser.</div>'}
+</script></body></html>
