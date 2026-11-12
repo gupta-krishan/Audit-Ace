@@ -13,6 +13,15 @@ URL: https://gupta-krishan.github.io/Audit-Ace/
 - Private by design: Passcode-encrypted storage in your browser, lockout after wrong attempts, auto-lock and encrypted backups.
 - Sales register: Net sales by GST rate with credit notes subtracted, downloadable as CSV.
 
+## GST guides
+- [GST Rate on Clothes in India: 5% up to ₹2,500, 18% Above](https://gupta-krishan.github.io/Audit-Ace/guides/gst-rate-on-clothes-above-2500.html): Readymade garments are taxed at 5% up to ₹2,500 per piece and 18% above, from 22 September 2025. Examples, HSN chapters and billing tips.
+- [GST Credit Note: Rules, Mandatory Details and Time Limit](https://gupta-krishan.github.io/Audit-Ace/guides/credit-note-under-gst-section-34.html): How a GST credit note works: when to issue it, mandatory details, the 30 November time limit and the effect on input tax credit.
+- [E-Way Bill: When Needed, Validity and JSON Upload](https://gupta-krishan.github.io/Audit-Ace/guides/e-way-bill-limit-and-json-upload.html): When an e-way bill is needed for goods, what details it asks for, how long it stays valid and how a JSON file is uploaded on the portal.
+- [GST Tax Invoice: Mandatory Details and Format](https://gupta-krishan.github.io/Audit-Ace/guides/mandatory-details-on-gst-tax-invoice.html): The details a GST tax invoice must show under Rule 46: numbering, GSTIN, HSN, tax rates, place of supply, signature and copies for goods.
+- [HSN Code on a GST Invoice: How Many Digits and How to Choose](https://gupta-krishan.github.io/Audit-Ace/guides/hsn-code-digits-required-in-gst-invoice.html): How many HSN digits a GST invoice needs by turnover, and a practical way to choose the right HSN code for your product.
+- [IGST vs CGST and SGST: Which to Charge on an Invoice](https://gupta-krishan.github.io/Audit-Ace/guides/igst-vs-cgst-sgst.html): When to charge IGST and when to charge CGST plus SGST, with an example and the common GSTIN state-code mistake.
+- [HSN Code for Kurta and the Right GST Rate](https://gupta-krishan.github.io/Audit-Ace/guides/hsn-code-for-kurta.html): HSN 62114210 is listed for women's cotton kurta-salwar sets. Men's kurtas vary. How to choose the code and apply the 5% or 18% GST rate.
+
 ## What it does not do
 - It does not file GST returns, generate e-invoice IRNs, handle purchase bills or cover services (SAC).
 - It does not file e-way bills; it produces JSON for upload on the official e-way bill portal.
