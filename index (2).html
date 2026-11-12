@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en-IN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; connect-src https://ifsc.razorpay.com https://api.postalpincode.in; frame-src 'self' about: blob: data:; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Audit-Ace | Free GST Invoice & E-way Bill Generator India</title>
+<meta name="description" content="Create GST tax invoices, credit notes and debit notes in Tally-style format. HSN matching, GSTIN checks, e-way bill JSON. Free, encrypted in your browser.">
+<link rel="canonical" href="https://gupta-krishan.github.io/Audit-Ace/">
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+<meta name="theme-color" content="#1f5eff">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231f5eff'/%3E%3Cpath d='M20 46l12-28 12 28M25 38h14' stroke='white' stroke-width='5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Audit-Ace"><meta property="og:locale" content="en_IN">
+<meta property="og:title" content="Audit-Ace | Free GST Invoice & E-way Bill Generator India"><meta property="og:description" content="Create GST tax invoices, credit notes and debit notes in Tally-style format. HSN matching, GSTIN checks, e-way bill JSON. Free, encrypted in your browser."><meta property="og:url" content="https://gupta-krishan.github.io/Audit-Ace/">
+<meta property="og:image" content="https://gupta-krishan.github.io/Audit-Ace/og-image.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Audit-Ace: GST invoice, credit note and e-way bill generator">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Audit-Ace | Free GST Invoice & E-way Bill Generator India"><meta name="twitter:description" content="Create GST tax invoices, credit notes and debit notes in Tally-style format. HSN matching, GSTIN checks, e-way bill JSON. Free, encrypted in your browser."><meta name="twitter:image" content="https://gupta-krishan.github.io/Audit-Ace/og-image.png">
+<script type="application/ld+json">[{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://gupta-krishan.github.io/Audit-Ace/#website", "url": "https://gupta-krishan.github.io/Audit-Ace/", "name": "Audit-Ace", "inLanguage": "en-IN"}, {"@type": "WebApplication", "@id": "https://gupta-krishan.github.io/Audit-Ace/#app", "name": "Audit-Ace", "url": "https://gupta-krishan.github.io/Audit-Ace/", "description": "Create GST tax invoices, credit notes and debit notes in Tally-style format. HSN matching, GSTIN checks, e-way bill JSON. Free, encrypted in your browser.", "applicationCategory": "BusinessApplication", "applicationSubCategory": "GST invoicing and accounting", "operatingSystem": "Any (web browser)", "browserRequirements": "Requires JavaScript and a modern browser", "inLanguage": "en-IN", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "INR"}, "featureList": ["Tally-style tax invoices", "Credit and debit notes", "HSN item master", "GSTIN, IFSC and pincode checks", "E-way bill JSON", "Private by design", "Sales register"], "image": "https://gupta-krishan.github.io/Audit-Ace/og-image.png", "dateModified": "2026-11-12", "isPartOf": {"@id": "https://gupta-krishan.github.io/Audit-Ace/#website"}}, {"@type": "FAQPage", "@id": "https://gupta-krishan.github.io/Audit-Ace/#faq", "mainEntity": [{"@type": "Question", "name": "What is Audit-Ace?", "acceptedAnswer": {"@type": "Answer", "text": "Audit-Ace is a browser-based GST billing tool for Indian businesses and accountants. It creates tax invoices, credit notes and debit notes in a Tally-style layout, checks GSTIN and HSN details, and exports e-way bill JSON. Your data is encrypted in your own browser."}}, {"@type": "Question", "name": "Is Audit-Ace free, and do I need an account?", "acceptedAnswer": {"@type": "Answer", "text": "Audit-Ace is currently free to use and needs no account or signup. You set a passcode on your own device, and your invoices, customers and bank details stay encrypted in your browser rather than on a server."}}, {"@type": "Question", "name": "Is my accounting data safe?", "acceptedAnswer": {"@type": "Answer", "text": "Your data is encrypted with AES-256 using a key derived from your passcode, and only the exact passcode opens it. The page can only contact two public lookup services, for IFSC and pincode, and never sends your invoices. If you forget the passcode, the data cannot be recovered, so keep an encrypted backup."}}, {"@type": "Question", "name": "Can I create GST credit notes and debit notes?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Audit-Ace creates credit notes and debit notes linked to the original invoice, with its own number series. It warns when a credit note is dated after 30 November following the financial year of the original invoice, which is the general Section 34 CGST time limit."}}, {"@type": "Question", "name": "Does Audit-Ace generate e-way bills?", "acceptedAnswer": {"@type": "Answer", "text": "It prepares the e-way bill JSON file for invoices of goods above 50,000 rupees, which you upload on the official e-way bill portal. It does not file the e-way bill for you. Transport distance, vehicle number and the place of both parties are needed."}}, {"@type": "Question", "name": "How does HSN code checking work?", "acceptedAnswer": {"@type": "Answer", "text": "Every item on a bill must come from your Item Master with a saved HSN code, and the code is matched against the item name. A bill is blocked if the HSN is missing or does not fit the item. A starter directory of common goods suggests codes, and you can confirm others after checking the GST portal."}}, {"@type": "Question", "name": "What is the GST rate on clothes in India in 2026?", "acceptedAnswer": {"@type": "Answer", "text": "Since 22 September 2025, readymade garments priced up to 2,500 rupees per piece are taxed at 5 percent, and those above 2,500 rupees per piece at 18 percent. Audit-Ace warns when the rate entered does not match this rule for garment HSN codes."}}, {"@type": "Question", "name": "Does Audit-Ace file GST returns or generate e-invoice IRNs?", "acceptedAnswer": {"@type": "Answer", "text": "No. Audit-Ace does not file GST returns, generate e-invoice IRNs or handle purchase bills, and it covers goods, not services. It produces invoices, notes, a sales register and e-way bill JSON, and it is not a substitute for professional tax advice."}}, {"@type": "Question", "name": "What does Audit-Ace verify online?", "acceptedAnswer": {"@type": "Answer", "text": "It looks up IFSC codes and pincodes against public directories and fills in bank and branch details. GSTIN is checked for format, checksum and state code, but not against the GST portal. Bank account numbers are checked for format only."}}]}]}]</script>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--ink:#1c2430;--mut:#667085;--line:#e4e7ec;--pri:#1f5eff;--okc:#067647;--warn:#b54708;--bad:#b42318}
+@media(prefers-color-scheme:dark){:root{--bg:#0f1318;--card:#171c23;--ink:#e8ecf1;--mut:#9aa4b2;--line:#2a313b;--pri:#6c93ff;--okc:#47c27e;--warn:#f0a35c;--bad:#f27a70}}
+*{box-sizing:border-box}body{margin:0;font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--ink)}
+header{background:var(--card);border-bottom:1px solid var(--line);padding:12px 16px;position:sticky;top:0;z-index:5}
+.brand{font-size:18px;font-weight:700;margin:0 0 8px}.hero{max-width:1000px;margin:0 auto;padding:40px 16px 8px}.hero h1{font-size:30px;line-height:1.2;margin:0 0 12px}.hero .lead{font-size:17px;color:var(--mut);max-width:760px}.cta{display:inline-block;margin:16px 0;padding:12px 22px;font-size:16px;border-radius:10px;background:var(--pri);color:#fff;border:0;cursor:pointer}.ticks{list-style:none;padding:0;display:flex;gap:16px;flex-wrap:wrap;color:var(--mut);font-size:14px}.about{max-width:1000px;margin:0 auto;padding:8px 16px 32px}.about h2{margin:24px 0 10px}.about details{border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:8px 0;background:var(--card)}.about summary{cursor:pointer;font-weight:600}.about li{margin:6px 0}footer{border-top:1px solid var(--line);padding:16px;text-align:center;color:var(--mut);font-size:13px}nav{display:flex;gap:6px;flex-wrap:wrap}
+nav button{background:none;border:1px solid var(--line);color:var(--ink);padding:6px 12px;border-radius:8px;cursor:pointer}
+nav button.on{background:var(--pri);color:#fff;border-color:var(--pri)}
+main{max-width:1000px;margin:0 auto;padding:16px}.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:16px}
+h2{margin:0 0 12px;font-size:18px}h3{margin:16px 0 8px;font-size:15px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+label{display:flex;flex-direction:column;font-size:13px;color:var(--mut);gap:4px}
+input,select{padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font:inherit;min-width:0;width:100%}
+button.b{padding:8px 14px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;font:inherit}
+button.pri{background:var(--pri);color:#fff;border-color:var(--pri)}button:disabled{opacity:.5}
+.scroll{overflow-x:auto}table{border-collapse:collapse;width:100%}th,td{padding:6px;text-align:left;border-bottom:1px solid var(--line);font-size:14px}
+td input{min-width:70px}td:first-child input{min-width:160px}
+.page{display:none}.page.on{display:block}.note{color:var(--mut);font-size:13px}
+.w{background:#fff4e5;color:#7a4100;border-left:4px solid var(--warn);padding:8px 12px;margin:6px 0;border-radius:6px}
+.ok{background:#e7f6ee;color:#05603a;border-left:4px solid var(--okc);padding:8px 12px;margin:6px 0;border-radius:6px}
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin:12px 0}
+.metrics div{border:1px solid var(--line);border-radius:10px;padding:8px 12px}.metrics small{color:var(--mut);display:block}.metrics b{font-size:17px}
+iframe{width:100%;height:420px;border:1px solid var(--line);border-radius:8px;background:#fff}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.banner{background:#e8f0ff;color:#1b3a8a;padding:8px 16px;font-size:13px;text-align:center}
+</style></head><body>
+<div class="banner">🔒 Your data is encrypted in this browser with your passcode and never sent to any server. Only public pincode/IFSC lookups go online. Download a backup regularly.</div>
+<div id="lock" style="position:fixed;inset:0;background:var(--bg);z-index:99;display:none;align-items:center;justify-content:center"><div class="card" style="max-width:400px;width:92%;margin:0"><h2 id="lk-t"></h2><p class="note" id="lk-p"></p>
+<label>Passcode<input type="password" id="lk-1" autocomplete="off"></label><label id="lk-2l" hidden>Repeat passcode<input type="password" id="lk-2" autocomplete="off"></label><div id="lk-m"></div>
+<p><label id="lk-rl" hidden style="flex-direction:row;gap:8px;color:inherit"><input type="checkbox" id="lk-rem" style="width:auto"> Keep me unlocked on this device for 12 hours</label></p>
+<div class="row"><button class="b pri" id="lk-go">Continue</button></div><p class="note" id="lk-fg" hidden><a href="#" id="lk-erase">Forgot passcode? Erase all data and start over</a></p></div></div>
+<section class="hero" id="hero"><h1>Free GST Invoice, Credit Note &amp; E-way Bill Generator for India</h1>
+<p class="lead"><strong>Audit-Ace</strong> is a browser-based GST billing tool for Indian businesses and accountants. Create Tally-style tax invoices, credit notes and debit notes, validate GSTIN and HSN codes, and export e-way bill JSON, with your data encrypted in your own browser.</p>
+<button class="cta" id="startBtn">Open Audit-Ace (free)</button> <a href="#how">How it works</a>
+<ul class="ticks"><li>✓ No account. Invoices never leave your device</li><li>✓ HSN code matched to every item</li><li>✓ GSTIN, IFSC and pincode checks</li></ul>
+<noscript><p><strong>Audit-Ace needs JavaScript enabled to run.</strong></p></noscript></section>
+<div id="app" hidden>
+<header><div class="brand">🧾 Audit-Ace <span class="note">GST invoices, credit/debit notes, e-way bill JSON</span></div>
+<nav id="nav"><button data-p="new" class="on">New document</button><button data-p="reg">Sales register</button><button data-p="docs">Documents</button><button data-p="items">Items &amp; HSN</button><button data-p="set">Settings</button><button id="lockNow" style="margin-left:auto">🔒 Lock</button></nav></header>
+<main><datalist id="itemlist"></datalist>
+<section id="p-new" class="page on">
+ <div class="card"><h2>New document</h2>
+  <div class="grid">
+   <label>Party<select id="party"></select></label>
+   <label>Type<select id="type"><option value="invoice">Invoice</option><option value="credit_note">Credit note</option><option value="debit_note">Debit note</option></select></label>
+   <label>Date<input type="date" id="date"></label>
+   <label class="cn" hidden>Original invoice no.<input id="orig" placeholder="INV/26-27/0001"></label>
+   <label class="cn" hidden>Reason<input id="reason" placeholder="Sales return / price difference"></label>
+  </div>
+  <h3>Items</h3><div class="scroll"><table id="items"></table></div>
+  <div class="row"><button class="b" id="addRow">+ Add item</button></div>
+  <p class="note">Leave GST % blank to use your HSN rate table (Settings).</p>
+  <h3>Transport (needed for e-way bill when invoice value is above ₹50,000)</h3>
+  <div class="grid"><label>Distance (km)<input type="number" id="km" min="0"></label><label>Vehicle no.<input id="veh"></label><label>Transporter GSTIN (optional)<input id="trn"></label></div>
+  <div class="row"><button class="b pri" id="preview">Preview</button></div>
+ </div>
+ <div id="previewBox"></div><div id="savedBox"></div>
+</section>
+<section id="p-reg" class="page"><div class="card"><h2>Sales register <span class="note">(credit notes subtracted)</span></h2><div id="regBox"></div></div></section>
+<section id="p-items" class="page">
+ <div class="card"><h2>Item master <span class="note">(like Tally stock items)</span></h2>
+  <p class="note">Every item on a bill must come from this list with a checked HSN code. The HSN is matched against the item name, and a bill cannot be created otherwise.</p>
+  <div class="grid"><label>Item name<input id="i-name" placeholder="e.g. Women's cotton kurta set"></label><label>HSN code<input id="i-hsn" inputmode="numeric" maxlength="8"></label><label>Unit<select id="i-unit"></select></label><label>Default rate (₹)<input id="i-rate" inputmode="decimal"></label><label>GST %<input id="i-gst" inputmode="decimal"></label></div>
+  <div class="row"><button class="b" id="i-suggest">Suggest HSN</button><button class="b pri" id="i-save">Save item</button><a class="b" href="https://services.gst.gov.in/services/searchhsnsac" target="_blank" rel="noopener noreferrer" style="text-decoration:none;color:inherit">Check on GST portal ↗</a></div>
+  <div id="i-sug"></div><div id="i-msg"></div>
+  <p id="i-ovr-l" hidden><label style="flex-direction:row;gap:8px;color:inherit"><input type="checkbox" id="i-ovr" style="width:auto"> I have verified this HSN on the GST portal or with my CA</label></p></div>
+ <div class="card"><h3>Saved items</h3><div id="i-list"></div></div>
+ <div class="card"><h3>Browse starter HSN directory</h3><input id="d-q" placeholder="Type e.g. shirt, laptop, rice"><div id="d-res"></div><p class="note">Starter list of common goods at 4-digit level (plus a few exact lines). It is not the full tariff. Turnover above ₹5 crore needs at least 6 digits: extend the code using the GST portal.</p></div>
+</section>
+<section id="p-docs" class="page"><div class="card"><h2>Documents</h2><div id="docList"></div></div><div id="docView"></div></section>
+<section id="p-set" class="page">
+ <div class="card"><h2>Your business</h2><div class="grid">
+  <label>Business name<input id="s-name"></label><label>GSTIN<input id="s-gstin"></label><label>Pincode<input id="s-pin" inputmode="numeric" maxlength="6"></label><label>City / place<input id="s-place"></label><label>Address<input id="s-addr"></label></div>
+  <p><label style="flex-direction:row;gap:8px;color:inherit"><input type="checkbox" id="s-t5" style="width:auto"> My annual turnover is above ₹5 crore (6-digit HSN is mandatory)</label></p>
+  <h3>Printed on invoices (optional)</h3><div class="grid"><label>Bank name<input id="s-bn"></label><label>A/c no.<input id="s-ac"></label><label>IFSC<input id="s-ifsc"></label><label>Branch<input id="s-br"></label><label>Terms / note<input id="s-terms"></label></div><p class="note">Bank details are printed on every invoice you create.</p>
+  <h3>Parties (customers)</h3><div class="scroll"><table id="parties"></table></div><div class="row"><button class="b" id="addParty">+ Add party</button></div>
+  <h3>HSN → GST rate table <span class="note">(your source of truth)</span></h3><div class="scroll"><table id="hsn"></table></div><div class="row"><button class="b" id="addHsn">+ Add HSN</button></div>
+  <div class="row"><button class="b pri" id="saveSet">Save settings</button></div><div id="setMsg"></div></div>
+ <div class="card"><h2>Passcode</h2><p class="note">Only the exact passcode opens your data. It is never stored; a wrong passcode simply cannot decrypt anything.</p>
+ <div class="grid"><label>Current passcode<input type="password" id="pc-0" autocomplete="off"></label><label>New passcode (10+ characters)<input type="password" id="pc-1" autocomplete="off"></label><label>Repeat new passcode<input type="password" id="pc-2" autocomplete="off"></label></div>
+ <div class="row"><button class="b pri" id="pc-go">Change passcode</button></div><div id="pc-msg"></div></div>
+ <div class="card"><h2>Backup &amp; safety</h2>
+  <p class="note">Data lives in this browser. Clearing browser data or switching device loses it, so back up.</p>
+  <div class="row"><button class="b" id="export">Download backup</button><label class="b" style="flex-direction:row;cursor:pointer">Restore backup<input type="file" id="import" accept=".json" hidden></label>
+  <button class="b" id="verify">Verify audit log</button><button class="b" id="wipe" style="color:var(--bad)">Erase all data</button></div><div id="safeMsg"></div></div>
+</section>
+</main></div>
+<section class="about" id="about"><h2>What Audit-Ace does</h2><ul><li><strong>Tally-style tax invoices.</strong> A4 invoice with consignee and buyer blocks, place of supply, HSN-wise tax summary, amount in words and Original, Duplicate and Triplicate copies.</li><li><strong>Credit and debit notes.</strong> Notes linked to the original invoice, with the Section 34 CGST time-limit check.</li><li><strong>HSN item master.</strong> Save items with HSN codes, get suggestions, and block bills where the HSN does not match the item.</li><li><strong>GSTIN, IFSC and pincode checks.</strong> GSTIN checksum and state validation, plus online IFSC and pincode lookups.</li><li><strong>E-way bill JSON.</strong> Export JSON for the e-way bill portal on goods invoices above 50,000 rupees.</li><li><strong>Private by design.</strong> Passcode-encrypted storage in your browser, lockout after wrong attempts, auto-lock and encrypted backups.</li><li><strong>Sales register.</strong> Net sales by GST rate with credit notes subtracted, downloadable as CSV.</li></ul>
+<h2 id="how">How to create a GST invoice with Audit-Ace</h2><ol><li>Open Audit-Ace and set a passcode.</li><li>Enter your business details, GSTIN and customers in Settings.</li><li>Add your items with HSN codes in Items & HSN.</li><li>Create an invoice, credit note or debit note and review the preview and warnings.</li><li>Approve it, then print or save as PDF, and download the e-way bill JSON if needed.</li></ol>
+<h2>Frequently asked questions</h2><details><summary>What is Audit-Ace?</summary><p>Audit-Ace is a browser-based GST billing tool for Indian businesses and accountants. It creates tax invoices, credit notes and debit notes in a Tally-style layout, checks GSTIN and HSN details, and exports e-way bill JSON. Your data is encrypted in your own browser.</p></details><details><summary>Is Audit-Ace free, and do I need an account?</summary><p>Audit-Ace is currently free to use and needs no account or signup. You set a passcode on your own device, and your invoices, customers and bank details stay encrypted in your browser rather than on a server.</p></details><details><summary>Is my accounting data safe?</summary><p>Your data is encrypted with AES-256 using a key derived from your passcode, and only the exact passcode opens it. The page can only contact two public lookup services, for IFSC and pincode, and never sends your invoices. If you forget the passcode, the data cannot be recovered, so keep an encrypted backup.</p></details><details><summary>Can I create GST credit notes and debit notes?</summary><p>Yes. Audit-Ace creates credit notes and debit notes linked to the original invoice, with its own number series. It warns when a credit note is dated after 30 November following the financial year of the original invoice, which is the general Section 34 CGST time limit.</p></details><details><summary>Does Audit-Ace generate e-way bills?</summary><p>It prepares the e-way bill JSON file for invoices of goods above 50,000 rupees, which you upload on the official e-way bill portal. It does not file the e-way bill for you. Transport distance, vehicle number and the place of both parties are needed.</p></details><details><summary>How does HSN code checking work?</summary><p>Every item on a bill must come from your Item Master with a saved HSN code, and the code is matched against the item name. A bill is blocked if the HSN is missing or does not fit the item. A starter directory of common goods suggests codes, and you can confirm others after checking the GST portal.</p></details><details><summary>What is the GST rate on clothes in India in 2026?</summary><p>Since 22 September 2025, readymade garments priced up to 2,500 rupees per piece are taxed at 5 percent, and those above 2,500 rupees per piece at 18 percent. Audit-Ace warns when the rate entered does not match this rule for garment HSN codes.</p></details><details><summary>Does Audit-Ace file GST returns or generate e-invoice IRNs?</summary><p>No. Audit-Ace does not file GST returns, generate e-invoice IRNs or handle purchase bills, and it covers goods, not services. It produces invoices, notes, a sales register and e-way bill JSON, and it is not a substitute for professional tax advice.</p></details><details><summary>What does Audit-Ace verify online?</summary><p>It looks up IFSC codes and pincodes against public directories and fills in bank and branch details. GSTIN is checked for format, checksum and state code, but not against the GST portal. Bank account numbers are checked for format only.</p></details>
+<h2>Important</h2><p>Audit-Ace is a billing aid, not tax or legal advice. GST rates, HSN classification and e-way bill rules change, so verify them on the official GST portal or with a qualified professional. Last updated 12 November 2026.</p></section>
+<footer>© Audit-Ace. Not affiliated with GSTN, CBIC or any accounting software vendor.</footer>
+<script>
+/*ENGINE*/
+const VALID=new Set([0,0.25,3,5,18,40]),EWAY_LIMIT=5000000;
+const UQC=["NOS","PCS","PRS","SET","BOX","PAC","DOZ","KGS","GMS","LTR","MLT","MTR","SQM","SQF","BAG","BTL","CTN","ROL","TON","UNT","OTH"],UQCS=new Set(UQC);
+const STATES={"01":"Jammu & Kashmir","02":"Himachal Pradesh","03":"Punjab","04":"Chandigarh","05":"Uttarakhand","06":"Haryana","07":"Delhi","08":"Rajasthan","09":"Uttar Pradesh","10":"Bihar","11":"Sikkim","12":"Arunachal Pradesh","13":"Nagaland","14":"Manipur","15":"Mizoram","16":"Tripura","17":"Meghalaya","18":"Assam","19":"West Bengal","20":"Jharkhand","21":"Odisha","22":"Chhattisgarh","23":"Madhya Pradesh","24":"Gujarat","26":"Dadra & Nagar Haveli and Daman & Diu","27":"Maharashtra","29":"Karnataka","30":"Goa","31":"Lakshadweep","32":"Kerala","33":"Tamil Nadu","34":"Puducherry","35":"Andaman & Nicobar Islands","36":"Telangana","37":"Andhra Pradesh","38":"Ladakh","97":"Other Territory","99":"Centre Jurisdiction"};
+const PIN2={11:"07",12:"06",13:"06",17:"02",30:"08",31:"08",32:"08",33:"08",34:"08",36:"24",37:"24",38:"24",39:"24",40:"27",41:"27",42:"27",43:"27",44:"27",45:"23",46:"23",47:"23",48:"23",56:"29",57:"29",58:"29",59:"29",70:"19",71:"19",72:"19",73:"19",74:"19"};
+function pinState(p){if(!/^\d{6}$/.test(p||""))return null;if(p.startsWith("403"))return"30";if(p.startsWith("737"))return null;return PIN2[+p.slice(0,2)]||null}
+const HSNDIR=`6101|Men's/boys' overcoats, anoraks, windcheaters (knitted)|jacket overcoat windcheater anorak coat knitted
+6102|Women's/girls' overcoats, anoraks, windcheaters (knitted)|jacket overcoat windcheater anorak coat knitted
+6103|Men's/boys' suits, trousers, shorts (knitted)|trouser pant lower shorts suit track knitted
+6104|Women's/girls' suits, dresses, skirts, trousers (knitted)|dress skirt trouser pant legging jegging shorts suit knitted
+6105|Men's/boys' shirts (knitted), e.g. polo|shirt polo knitted
+6106|Women's/girls' blouses and shirts (knitted)|blouse top shirt knitted
+6107|Men's/boys' underwear and nightwear (knitted)|underwear brief boxer vest nightwear pyjama innerwear knitted
+6108|Women's/girls' slips, panties, nightwear (knitted)|panty petticoat slip nightdress nightwear pyjama innerwear knitted
+6109|T-shirts, singlets and vests (knitted)|tshirt t-shirt tee singlet vest knitted
+6110|Jerseys, pullovers, sweaters, sweatshirts, hoodies (knitted)|sweater sweatshirt hoodie pullover cardigan jersey knitted
+6111|Babies' garments (knitted)|baby infant garment knitted
+6112|Track suits, ski suits, swimwear (knitted)|tracksuit swimwear swimsuit knitted
+6115|Socks, stockings, tights (knitted)|sock stocking tights hosiery
+6116|Gloves and mittens (knitted)|glove mittens
+6201|Men's/boys' overcoats, jackets (woven)|jacket overcoat windcheater coat woven
+6202|Women's/girls' overcoats, jackets (woven)|jacket overcoat coat woven
+6203|Men's/boys' suits, blazers, trousers, shorts (woven)|suit blazer trouser pant jeans shorts woven
+6204|Women's/girls' suits, jackets, dresses, skirts, trousers (woven)|dress suit blazer skirt trouser pant jeans shorts woven kurti
+6205|Men's/boys' shirts (woven)|shirt woven
+6205|Men's/boys' shirts (woven)|kurta pajama ethnic|VERIFY: classification of a men's kurta varies by type and sets (6205, 6211 or 6203 are all seen in practice). Confirm on the GST portal or with your CA.
+6206|Women's/girls' blouses and shirts (woven)|blouse top shirt woven
+6207|Men's/boys' underwear and nightwear (woven)|underwear boxer nightwear pyjama woven
+6208|Women's/girls' slips, nightdresses, pyjamas (woven)|slip petticoat nightdress nightwear pyjama woven
+6209|Babies' garments (woven)|baby infant garment woven
+6210|Garments of felt or coated fabrics|raincoat coated
+6211|Track suits, swimwear and other garments (woven)|tracksuit swimwear garment kurta kurti salwar ethnic dhoti sherwani
+62114210|Women's/girls' cotton kurta and salwar, with or without dupatta (tariff line)|kurta kurti salwar dupatta ladies suit|Valid for women's/girls' COTTON kurta-salwar sets only. Other fabrics or men's kurtas use other tariff lines.
+6212|Brassieres, girdles, corsets|bra brassiere corset girdle
+6213|Handkerchiefs|handkerchief hanky
+6214|Shawls, scarves, mufflers|shawl scarf muffler stole dupatta
+6215|Ties and bow ties|tie bowtie
+6301|Blankets and travelling rugs|blanket rug
+6302|Bed, table, toilet and kitchen linen|bedsheet pillow towel napkin tablecloth linen
+6303|Curtains and blinds|curtain blind
+6304|Other furnishing articles (bedspreads, cushion covers)|bedspread cushion furnishing
+6305|Sacks and bags for packing|sack gunny packing
+5208|Woven cotton fabric (85%+ cotton, up to 200 g/m2)|cotton fabric cloth woven
+5209|Woven cotton fabric (85%+ cotton, over 200 g/m2)|cotton fabric cloth denim canvas woven
+5407|Woven fabrics of synthetic filament yarn|polyester nylon synthetic fabric cloth
+6401|Waterproof footwear (rubber/plastic)|gumboot rain boot waterproof footwear
+6402|Other footwear, rubber or plastic (slippers, sandals)|slipper flip flop sandal shoe footwear crocs
+6403|Footwear with leather uppers|leather shoe sandal boot formal footwear
+6404|Footwear with textile uppers (canvas, sports shoes)|canvas shoe sneaker sports footwear
+8471|Computers: laptops, desktops, tablets, keyboards, scanners|laptop notebook computer desktop tablet keyboard mouse scanner server
+8443|Printers, copiers, cartridges|printer copier photocopier cartridge toner inkjet
+8517|Mobile phones, telephones, routers, network devices|mobile phone smartphone telephone router modem wifi
+8518|Headphones, earphones, speakers, microphones|headphone earphone earbud speaker microphone soundbar
+8504|Chargers, power adapters, UPS, transformers|charger adapter ups transformer inverter
+8507|Batteries and power banks (rechargeable)|battery lithium powerbank rechargeable
+8528|Monitors, televisions, projectors|monitor television tv projector display
+8523|Pen drives, memory cards, SSDs, discs|pendrive usb memory card ssd disc storage
+8544|Wires, cables, connectors|cable wire hdmi connector copper
+8536|Switches, plugs, sockets, relays, fuses|switch plug socket relay fuse mcb
+8539|Lamps and LED bulbs|bulb led lamp tubelight
+8516|Electric heaters, irons, kettles, microwaves, hair dryers|heater iron kettle microwave toaster hairdryer geyser
+8414|Fans, air pumps, compressors|fan pump compressor blower
+8415|Air conditioners|ac air conditioner
+8418|Refrigerators and freezers|fridge refrigerator freezer
+8450|Washing machines|washing machine
+8509|Domestic appliances: mixer-grinders, vacuum cleaners|mixer grinder blender juicer vacuum
+8525|Cameras and CCTV|camera cctv webcam
+9401|Seats and chairs|chair sofa stool seat
+9403|Other furniture: tables, desks, cupboards, beds|table desk cupboard almirah wardrobe bed shelf furniture
+9404|Mattresses, pillows, quilts|mattress pillow quilt
+9405|Lamps and lighting fittings|lamp chandelier lighting fitting
+7323|Iron/steel household articles, utensils|utensil kitchenware steel pot pan
+7615|Aluminium household articles|aluminium utensil cookware
+3924|Plastic tableware and household articles|plastic bucket tableware container household
+3923|Plastic packaging (bags, bottles, boxes)|plastic bag bottle box packaging container
+6911|Porcelain tableware|plate cup mug ceramic porcelain
+7013|Glassware for table and kitchen|glass tumbler glassware
+4820|Registers, notebooks, diaries|notebook register diary stationery pad
+4802|Uncoated paper for printing and writing|paper a4 copier printing writing
+4819|Cartons, boxes, paper bags|carton box paper-bag packaging corrugated
+4818|Toilet paper, tissues, napkins|tissue napkin toilet
+9608|Pens and markers|pen marker ballpoint
+9609|Pencils and crayons|pencil crayon chalk
+4901|Printed books|book textbook
+4911|Other printed matter (posters, cards)|poster card print brochure
+1006|Rice|rice basmati
+1001|Wheat|wheat
+1101|Wheat flour (atta, maida)|atta flour maida
+0713|Dried pulses (dal)|dal pulse lentil chana
+0401|Milk and cream|milk cream
+0405|Butter and ghee|butter ghee
+0406|Cheese and paneer|cheese paneer
+0901|Coffee|coffee
+0902|Tea|tea
+0904|Pepper and chillies|pepper chilli
+0910|Ginger, turmeric and other spices|turmeric ginger spice masala
+1512|Sunflower and safflower oil|sunflower oil
+1514|Mustard oil|mustard oil
+1701|Sugar|sugar
+1704|Sugar confectionery|candy toffee confectionery
+1806|Chocolate and cocoa foods|chocolate cocoa
+1905|Bread, biscuits, cakes, pastry|bread biscuit cake pastry cookie
+1902|Pasta and noodles|pasta noodle macaroni
+2106|Other food preparations (namkeen, mixes)|namkeen snack mix food
+2201|Drinking and mineral water|water mineral
+2202|Soft drinks and juices|cola soft-drink juice beverage
+0701|Potatoes|potato
+0702|Tomatoes|tomato
+0703|Onions and garlic|onion garlic
+0803|Bananas|banana
+0804|Dates, mangoes, guavas|mango dates
+0808|Apples and pears|apple pear
+0802|Nuts (almonds, cashews, walnuts)|almond cashew walnut nut
+3004|Medicaments packed for retail|medicine tablet capsule syrup ointment
+3005|Bandages, dressings, cotton wool|bandage gauze dressing plaster
+3401|Soap|soap
+3402|Detergents and washing preparations|detergent washing cleaner
+3304|Beauty, make-up and skin-care preparations|cream lotion makeup lipstick cosmetic
+3305|Hair preparations (shampoo)|shampoo hair conditioner
+3306|Oral hygiene (toothpaste)|toothpaste mouthwash dental
+3307|Shaving, deodorant, perfumery preparations|deodorant perfume shaving
+3808|Insecticides and disinfectants|insecticide disinfectant sanitizer pesticide
+9018|Medical instruments|stethoscope syringe thermometer instrument
+8708|Motor vehicle parts|auto spare part car brake
+4011|New rubber tyres|tyre tire
+8711|Motorcycles and scooters|motorcycle scooter bike
+8714|Bicycle parts|bicycle cycle part
+7318|Screws, bolts, nuts, washers|screw bolt nut washer fastener
+8205|Hand tools|spanner wrench plier hammer tool
+8467|Power hand tools|drill grinder power-tool
+7308|Iron/steel structures|steel structure frame girder
+2523|Cement|cement
+6907|Ceramic tiles|tile ceramic floor
+3209|Water-based paints|paint emulsion distemper
+3208|Solvent-based paints and varnishes|paint enamel varnish
+3917|Plastic pipes|pipe pvc plastic
+8481|Taps and valves|tap valve faucet
+8413|Pumps for liquids|pump water
+8501|Electric motors|motor electric
+7113|Jewellery of precious metal|gold silver jewellery jewelry ring necklace
+7117|Imitation jewellery|imitation artificial jewellery bangles
+4202|Handbags, suitcases, wallets, school bags|handbag bag suitcase wallet backpack purse
+9503|Toys|toy doll
+9506|Sports goods|sports cricket bat ball racket gym
+6601|Umbrellas|umbrella`.split("\n").map(l=>{const[h,d,k,n]=l.split("|");return{h,d,k,n:n||""}});
+const STOP=new Set("men mens man women womens woman ladies lady girl girls boy boys kids for of and the with new cotton silk wool plastic steel iron black white blue red pack set pcs piece".split(" "));
+const stem=w=>w.length>3&&w.endsWith("s")&&!w.endsWith("ss")?w.slice(0,-1):w;
+const toks=s=>s.toLowerCase().replace(/[^a-z0-9 -]/g," ").split(/\s+/).filter(w=>w.length>1&&!STOP.has(w)).map(stem);
+const gender=s=>/\b(women|womens|woman|ladies|lady|girl|girls)\b/.test(s.toLowerCase().replace(/'s\b/g,"s"))?"w":/\b(men|mens|man|boy|boys)\b/.test(s.toLowerCase().replace(/'s\b/g,"s"))?"m":"";
+const hsnScore=(name,e)=>{const q=toks(name),k=new Set(toks(e.k+" "+e.d)),b=q.filter(w=>k.has(w)).length;if(!b)return 0;const gn=gender(name),ge=gender(e.d+" "+e.k);return b+(gn&&ge?(gn===ge?0.5:-0.5):0)};
+function suggestHSN(name){const seen=new Set(),r=HSNDIR.map(e=>({e,s:hsnScore(name,e)})).filter(x=>x.s>0).sort((a,b)=>b.s-a.s).map(x=>x.e);return r.filter(e=>{if(seen.has(e.h))return false;seen.add(e.h);return true}).slice(0,5)}
+function hsnCheck(name,hsn){const ex=HSNDIR.filter(e=>e.h===hsn),infos=ex.length?ex:HSNDIR.filter(e=>hsn.startsWith(e.h)),sug=suggestHSN(name);
+ if(!infos.length)return{ok:false,msg:"HSN "+hsn+" is not in the built-in directory, so I cannot confirm it matches '"+name+"'.",sug};
+ const best=infos.reduce((a,b)=>hsnScore(name,b)>hsnScore(name,a)?b:a);
+ if(hsnScore(name,best)>=1)return{ok:true,e:best};
+ return{ok:false,msg:"'"+name+"' does not look like HSN "+hsn+" ("+infos[0].d+").",sug}}
+const MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const fmtDate=s=>{const[y,m,d]=s.split("-");return d+"-"+MON[+m-1]+"-"+y};
+function words(n){const a=["","One","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten","Eleven","Twelve","Thirteen","Fourteen","Fifteen","Sixteen","Seventeen","Eighteen","Nineteen"],b=["","","Twenty","Thirty","Forty","Fifty","Sixty","Seventy","Eighty","Ninety"];
+ const two=x=>x<20?a[x]:b[Math.floor(x/10)]+(x%10?" "+a[x%10]:""),three=x=>(x>=100?a[Math.floor(x/100)]+" Hundred"+(x%100?" ":""):"")+(x%100?two(x%100):"");
+ if(n===0)return"Zero";let s="";const cr=Math.floor(n/1e7);n%=1e7;const lk=Math.floor(n/1e5);n%=1e5;const th=Math.floor(n/1e3);n%=1e3;
+ if(cr)s+=words(cr)+" Crore ";if(lk)s+=two(lk)+" Lakh ";if(th)s+=two(th)+" Thousand ";if(n)s+=three(n);return s.trim()}
+const inrWords=p=>{const r=Math.floor(p/100),ps=p%100;return"INR "+words(r)+(ps?" and "+words(ps)+" Paise":"")+" Only"};
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const inr=p=>(p/100).toLocaleString("en-IN",{minimumFractionDigits:2,maximumFractionDigits:2});
+const roundHU=x=>Math.floor(x+0.5+1e-9);
+function gstinOk(g){if(!/^\d{2}[A-Z]{5}\d{4}[A-Z][1-9A-Z]Z[0-9A-Z]$/.test(g||""))return false;const cs="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";let s=0;
+ for(let i=0;i<14;i++){const p=cs.indexOf(g[i])*(i%2?2:1);s+=Math.floor(p/36)+p%36}return cs[(36-s%36)%36]===g[14]}
+function fyOf(d){const y=+d.slice(0,4),mo=+d.slice(5,7),st=mo>=4?y:y-1,p=n=>String(n%100).padStart(2,"0");return{label:p(st)+"-"+p(st+1),end:st+1}}
+const GRE=/^\d{2}[A-Z]{5}\d{4}[A-Z][1-9A-Z]Z[0-9A-Z]$/;
+const stateOf=p=>p.gstin?p.gstin.slice(0,2):(p.state||"");
+function compute(doc,m,docs){
+ const warn=[],seller=m.seller,party=m.parties[doc.party_name.trim().toLowerCase()];
+ if(!party)throw new Error("Party not found in Settings: "+doc.party_name);
+ if(!GRE.test(seller.gstin||""))throw new Error("Your business GSTIN is missing or malformed. Fix it in Settings.");
+ if(party.gstin){if(!GRE.test(party.gstin))throw new Error("Party GSTIN format is invalid: "+party.gstin+". Fix it in Settings.");if(!gstinOk(party.gstin))warn.push("Party GSTIN "+party.gstin+" fails checksum")}
+ else if(!/^\d{2}$/.test(party.state||""))throw new Error("This party has no GSTIN. Enter its 2-digit state code in Settings (e.g. 07 for Delhi).");
+ const sc=seller.gstin.slice(0,2),pcs=stateOf(party);
+ if(!STATES[sc])throw new Error("Your GSTIN has an unknown state code: "+sc);
+ if(!STATES[pcs])throw new Error("Unknown state code '"+pcs+"' for this party.");
+ if(!gstinOk(seller.gstin))warn.push("Your GSTIN "+seller.gstin+" fails checksum");
+ const sp=pinState(seller.pincode);
+ if(sp&&sp!==sc)warn.push("Your pincode "+seller.pincode+" is in "+STATES[sp]+" ("+sp+") but your GSTIN state code is "+sc+" ("+STATES[sc]+"). Check your GSTIN: it decides IGST vs CGST+SGST.");
+ const bp=pinState(party.pincode);
+ if(bp&&bp!==pcs)warn.push("Party pincode "+party.pincode+" is in "+STATES[bp]+" ("+bp+") but its state code is "+pcs+" ("+STATES[pcs]+"). Check place of supply.");
+ const inter=sc!==pcs,lines=[];let T=0,C=0,S=0,I=0;
+ for(const it of doc.items){
+  const nm="'"+it.description+"'";
+  if(!(it.qty>0))throw new Error("Quantity must be more than 0 for "+nm);
+  if(!(it.rate>=0))throw new Error("Enter a rate for "+nm);
+  const disc=+it.disc||0;if(disc<0||disc>100)throw new Error("Discount must be between 0 and 100% for "+nm);
+  if(!UQCS.has(it.unit))throw new Error("Choose a valid unit (UQC) for "+nm+": '"+it.unit+"' is not one");
+  const mi=(m.items||[]).find(x=>x.name.toLowerCase()===String(it.description).trim().toLowerCase());
+  if(!mi)throw new Error(nm+" is not in your Item Master. Add it under Items & HSN with a checked HSN code, then select it from the list.");
+  if(!it.hsn)throw new Error("HSN code is mandatory for "+nm+". Select the item from the list.");
+  if(it.hsn!==mi.hsn)throw new Error("HSN on "+nm+" does not match the Item Master ("+mi.hsn+"). Select the item again.");
+  if(!/^(\d{4}|\d{6}|\d{8})$/.test(it.hsn))throw new Error("HSN for "+nm+" must be 4, 6 or 8 digits");
+  if(it.hsn.length<(seller.turnover5cr?6:4))throw new Error("HSN for "+nm+" needs at least "+(seller.turnover5cr?6:4)+" digits"+(seller.turnover5cr?" (your turnover is above ₹5 crore)":""));
+  let rate=it.gst_rate!=null?+it.gst_rate:(m.hsn_rates&&m.hsn_rates[it.hsn]!=null?+m.hsn_rates[it.hsn]:null);
+  if(rate==null||isNaN(rate)||rate<0)throw new Error("Enter GST % for "+nm+", or add its HSN to the rate table in Settings.");
+  if(!VALID.has(rate))warn.push(nm+": GST rate "+rate+"% is not a current standard slab (0, 0.25, 3, 5, 18, 40). REVIEW");
+  if(/^6[12]/.test(it.hsn||"")&&doc.date>="2025-09-22"){const net=it.rate*(1-disc/100),exp=net>2500?18:5;
+   if(rate!==exp)warn.push(nm+": apparel (HSN chapters 61/62) is taxed at 5% up to ₹2,500 per piece and 18% above, from 22-Sep-2025. At ₹"+net.toFixed(2)+" per "+it.unit+" the expected rate is "+exp+"% but "+rate+"% is entered.")}
+  const tx=roundHU(it.qty*it.rate*(1-disc/100)*100);let c=0,s=0,i=0;
+  if(inter)i=roundHU(tx*rate/100);else{c=s=roundHU(tx*rate/200)}
+  lines.push({...it,disc,gst_rate:rate,taxable:tx,cgst:c,sgst:s,igst:i});T+=tx;C+=c;S+=s;I+=i}
+ const gross=T+C+S+I,total=roundHU(gross/100)*100;
+ if(doc.doc_type!=="invoice"){
+  const ref=docs.find(x=>x.no===doc.original_invoice_no&&x.type==="invoice");
+  if(!ref)warn.push("Original invoice not found in your records (needed for credit/debit note, Sec 34 CGST)");
+  else if(doc.date>fyOf(ref.date).end+"-11-30")warn.push("Past 30 Nov following the FY of the original invoice: credit note not allowed / ITC reversal applies")}
+ else if(total>EWAY_LIMIT){
+  if(!(doc.transport&&doc.transport.distance_km))warn.push("Value above ₹50,000: add transport distance/vehicle to generate an e-way bill");
+  else if(!seller.place||!party.place)warn.push("E-way bill needs the city/place for you and the party. Add it in Settings.")}
+ const orig=doc.original_invoice_no?docs.find(x=>x.no===doc.original_invoice_no):null;
+ return{type:doc.doc_type,date:doc.date,seller,party,party_name:doc.party_name,original_invoice_no:doc.original_invoice_no,original_date:orig?orig.date:null,reason:doc.reason,inter,lines,
+  taxable:T,cgst:C,sgst:S,igst:I,round_off:total-gross,total,transport:doc.transport,warnings:warn}}
+function nextNo(type,date,docs){const pre={invoice:"INV",credit_note:"CN",debit_note:"DN"}[type],fy=fyOf(date).label,re=new RegExp("^"+pre+"/"+fy+"/(\\d+)$");
+ let mx=0;for(const d of docs){const r=re.exec(d.no);if(r)mx=Math.max(mx,+r[1])}return pre+"/"+fy+"/"+String(mx+1).padStart(4,"0")}
+function eway(d){if(d.type!=="invoice"||d.total<=EWAY_LIMIT||!(d.transport&&d.transport.distance_km))return null;
+ const s=d.seller,p=d.party,t=d.transport,r=x=>x/100,dd=d.date.split("-").reverse().join("/");
+ return{version:"1.0.0621",billLists:[{userGstin:s.gstin,supplyType:"O",subSupplyType:1,docType:"INV",docNo:d.no,docDate:dd,
+  fromGstin:s.gstin,fromTrdName:s.name,fromAddr1:(s.address||"").slice(0,120),fromPlace:s.place||"",fromPincode:+s.pincode,fromStateCode:+s.gstin.slice(0,2),actFromStateCode:+s.gstin.slice(0,2),
+  toGstin:p.gstin||"URP",toTrdName:d.party_name,toAddr1:(p.address||"").slice(0,120),toPlace:p.place||"",toPincode:+p.pincode,toStateCode:+stateOf(p),actToStateCode:+stateOf(p),
+  totalValue:r(d.taxable),cgstValue:r(d.cgst),sgstValue:r(d.sgst),igstValue:r(d.igst),cessValue:0,totInvValue:r(d.total),
+  transMode:1,transDistance:+t.distance_km,transporterId:t.transporter_id||"",vehicleNo:t.vehicle_no||"",vehicleType:"R",transactionType:1,
+  itemList:d.lines.map(l=>({productName:l.description,hsnCode:/^\d+$/.test(l.hsn||"")?+l.hsn:0,quantity:l.qty,qtyUnit:l.unit||"NOS",taxableAmount:r(l.taxable),
+   cgstRate:d.inter?0:l.gst_rate/2,sgstRate:d.inter?0:l.gst_rate/2,igstRate:d.inter?l.gst_rate:0,cessRate:0}))}]}}
+function invoiceHTML(d,copies){copies=copies||["ORIGINAL FOR RECIPIENT"];
+ const T={invoice:"Tax Invoice",credit_note:"Credit Note",debit_note:"Debit Note"}[d.type],s=d.seller,p=d.party,pan=s.gstin.slice(2,12),sc=s.gstin.slice(0,2),pc=stateOf(p);
+ const hs={};for(const l of d.lines){const k=(l.hsn||"-")+"|"+l.gst_rate,r=hs[k]=hs[k]||{hsn:l.hsn||"-",rate:l.gst_rate,tx:0,c:0,s:0,i:0};r.tx+=l.taxable;r.c+=l.cgst;r.s+=l.sgst;r.i+=l.igst}
+ const H=Object.values(hs),units=[...new Set(d.lines.map(l=>l.unit))],tq=d.lines.reduce((x,l)=>x+l.qty,0),taxTot=d.cgst+d.sgst+d.igst;
+ const addr=x=>(x.address?esc(x.address)+"<br>":"")+esc((x.place?x.place+" - ":"")+(x.pincode||""));
+ const party=`<b>${esc(d.party_name)}</b><br>${addr(p)}<br>GSTIN/UIN : ${esc(p.gstin||"Unregistered")}<br>State Name : ${esc(STATES[pc])}, Code : ${esc(pc)}`;
+ const rows=d.lines.map((l,i)=>`<tr><td class=c>${i+1}</td><td><b>${esc(l.description)}</b></td><td class=c>${esc(l.hsn||"")}</td><td class=r><b>${l.qty} ${esc(l.unit)}</b></td><td class=r>${inr(Math.round(l.rate*100))}</td><td class=c>${esc(l.unit)}</td><td class=r>${l.disc?l.disc+" %":""}</td><td class=r><b>${inr(l.taxable)}</b></td></tr>`).join("");
+ const taxRows=(d.inter?[["IGST",d.igst]]:[["CGST",d.cgst],["SGST",d.sgst]]).map(([n,v])=>`<tr><td></td><td class=r><b><i>${n}</i></b></td><td></td><td></td><td></td><td></td><td></td><td class=r><b>${inr(v)}</b></td></tr>`).join("")+(d.round_off?`<tr><td></td><td class=r><i>Round Off</i></td><td></td><td></td><td></td><td></td><td></td><td class=r>${d.round_off<0?"(-)":""}${inr(Math.abs(d.round_off))}</td></tr>`:"");
+ const hsnRows=H.map(r=>d.inter?`<tr><td>${esc(r.hsn)}</td><td class=r>${inr(r.tx)}</td><td class=r>${r.rate}%</td><td class=r>${inr(r.i)}</td><td class=r>${inr(r.i)}</td></tr>`
+  :`<tr><td>${esc(r.hsn)}</td><td class=r>${inr(r.tx)}</td><td class=r>${r.rate/2}%</td><td class=r>${inr(r.c)}</td><td class=r>${r.rate/2}%</td><td class=r>${inr(r.s)}</td><td class=r>${inr(r.c+r.s)}</td></tr>`).join("");
+ const hsnHead=d.inter?"<tr><th rowspan=2>HSN/SAC</th><th rowspan=2>Taxable Value</th><th colspan=2>Integrated Tax</th><th rowspan=2>Total Tax Amount</th></tr><tr><th>Rate</th><th>Amount</th></tr>"
+  :"<tr><th rowspan=2>HSN/SAC</th><th rowspan=2>Taxable Value</th><th colspan=2>Central Tax</th><th colspan=2>State Tax</th><th rowspan=2>Total Tax Amount</th></tr><tr><th>Rate</th><th>Amount</th><th>Rate</th><th>Amount</th></tr>";
+ const hsnTot=d.inter?`<tr class=tt><td class=r>Total</td><td class=r>${inr(d.taxable)}</td><td></td><td class=r>${inr(d.igst)}</td><td class=r>${inr(d.igst)}</td></tr>`
+  :`<tr class=tt><td class=r>Total</td><td class=r>${inr(d.taxable)}</td><td></td><td class=r>${inr(d.cgst)}</td><td></td><td class=r>${inr(d.sgst)}</td><td class=r>${inr(taxTot)}</td></tr>`;
+ const bank=(s.bank_name||s.bank_ac)?`<div class=bk><b>Company's Bank Details</b><br>Bank Name : ${esc(s.bank_name||"")}<br>A/c No. : ${esc(s.bank_ac||"")}<br>Branch &amp; IFSC Code : ${esc(s.bank_branch||"")} ${esc(s.bank_ifsc||"")}</div>`:"";
+ const ref=d.type!=="invoice"?`<div class=kv><div><small>Against Invoice No.</small><b>${esc(d.original_invoice_no||"")}</b></div><div><small>Original Invoice Date</small><b>${d.original_date?fmtDate(d.original_date):""}</b></div></div>${d.reason?`<div class=kv><div style="grid-column:1/3"><small>Reason</small><b>${esc(d.reason)}</b></div></div>`:""}`:"";
+ const page=cp=>`<div class=pg><div class=hd><div></div><div class=ti>${T}</div><div class=cp>(${esc(cp)})</div></div>
+<div class=top><div class=l><div class=b><b>${esc(s.name)}</b><br>${addr(s)}<br>GSTIN/UIN : ${esc(s.gstin)}<br>State Name : ${esc(STATES[sc])}, Code : ${esc(sc)}<br>PAN : ${esc(pan)}</div>
+<div class=b><small>Consignee (Ship to)</small><br>${party}</div><div class="b nb"><small>Buyer (Bill to)</small><br>${party}</div></div>
+<div class=r2><div class=kv><div><small>${{invoice:"Invoice",credit_note:"Credit Note",debit_note:"Debit Note"}[d.type]} No.</small><b>${esc(d.no)}</b></div><div><small>Dated</small><b>${fmtDate(d.date)}</b></div></div>
+<div class=kv><div><small>Reverse Charge</small><b>No</b></div><div><small>Place of Supply</small><b>${esc(STATES[pc])} (${esc(pc)})</b></div></div>${ref}
+${d.transport&&d.transport.vehicle_no?`<div class=kv><div><small>Vehicle No.</small><b>${esc(d.transport.vehicle_no)}</b></div><div><small>Dispatch distance</small><b>${esc(d.transport.distance_km||"")} km</b></div></div>`:""}</div></div>
+<table class=it><tr><th style="width:4%">Sl No.</th><th>Description of Goods</th><th style="width:11%">HSN/SAC</th><th style="width:11%">Quantity</th><th style="width:10%">Rate</th><th style="width:6%">per</th><th style="width:7%">Disc. %</th><th style="width:14%">Amount</th></tr>
+${rows}${taxRows}<tr class=sp><td colspan=8></td></tr><tr class=tt><td></td><td class=r>Total</td><td></td><td class=r>${units.length===1?tq+" "+units[0]:""}</td><td></td><td></td><td></td><td class=r>₹ ${inr(d.total)}</td></tr></table>
+<div class=w1><div><small>Amount Chargeable (in words)</small><br><b>${inrWords(d.total)}</b></div><div class=r><i>E. &amp; O.E</i></div></div>
+<table class=hs>${hsnHead}${hsnRows}${hsnTot}</table>
+<div class=w1><div><small>Tax Amount (in words)</small> : <b>${inrWords(taxTot)}</b></div></div>
+<div class=ft><div class=fl><b><u>Declaration</u></b><br>We declare that this invoice shows the actual price of the goods described and that all particulars are true and correct.${s.terms?"<br><br>"+esc(s.terms):""}${bank}</div>
+<div class=fr><div>for <b>${esc(s.name)}</b></div><div class=sg>Authorised Signatory</div></div></div>
+<div class=jr>${s.place?"SUBJECT TO "+esc(s.place.toUpperCase())+" JURISDICTION<br>":""}This is a Computer Generated Invoice</div></div>`;
+ return`<!DOCTYPE html><html><head><meta charset="utf-8"><title>${esc(d.no)}</title><style>
+@page{size:A4;margin:0}*{box-sizing:border-box}body{margin:0;font:11px/1.35 Arial,Helvetica,sans-serif;color:#000;background:#fff}
+.pg{width:210mm;min-height:297mm;padding:10mm;page-break-after:always}.pg:last-child{page-break-after:auto}
+.hd{display:grid;grid-template-columns:1fr auto 1fr;align-items:end;margin-bottom:4px}.ti{font-size:16px;font-weight:bold;text-align:center}.cp{text-align:right;font-size:11px}
+small{font-size:9.5px;color:#222}.top{display:grid;grid-template-columns:1.15fr 1fr;border:1px solid #000;border-bottom:0}.l{border-right:1px solid #000}.b{padding:4px 6px;border-bottom:1px solid #000}.nb{border-bottom:0}
+.kv{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid #000;min-height:34px}.kv>div{padding:3px 6px;border-right:1px solid #000}.kv>div:last-child{border-right:0}.kv b{display:block}
+table{border-collapse:collapse;width:100%}.it th,.it td{border-left:1px solid #000;border-right:1px solid #000;padding:3px 5px;vertical-align:top}.it th{border:1px solid #000;text-align:center}.it{border:1px solid #000}
+.it tr.sp td{height:40px}.tt td{border-top:1px solid #000;border-bottom:1px solid #000;font-weight:bold}.r{text-align:right}.c{text-align:center}
+.w1{border:1px solid #000;border-top:0;padding:4px 6px;display:flex;justify-content:space-between}
+.hs{border:1px solid #000;border-top:0}.hs th,.hs td{border:1px solid #000;padding:2px 5px}.hs th{text-align:center}
+.ft{display:grid;grid-template-columns:1.2fr 1fr;border:1px solid #000;border-top:0}.fl{padding:6px;border-right:1px solid #000}.fr{padding:6px;text-align:right;display:flex;flex-direction:column;justify-content:space-between;min-height:90px}.sg{margin-top:36px}
+.bk{margin-top:8px}.jr{text-align:center;margin-top:8px;font-size:10px}</style></head><body>${copies.map(page).join("")}</body></html>`}
+/*END ENGINE*/
+
+const DEFAULT_MASTERS={seller:{name:"",gstin:"",pincode:"",address:"",place:"",turnover5cr:false},parties:{},hsn_rates:{},items:[]};
+const LS={get(k,d){try{const v=JSON.parse(localStorage.getItem(k));return v==null?d:v}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){alert("Could not save: browser storage is blocked or full.")}}};
+let M=LS.get("caagent.masters",DEFAULT_MASTERS);if(M.seller&&M.seller.name==="Demo Traders Pvt Ltd"){M=JSON.parse(JSON.stringify(DEFAULT_MASTERS));LS.set("caagent.masters",M)}
+let DOCS=LS.get("caagent.docs",[]),AUD=LS.get("caagent.audit",[]);
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+let KEY=null,SALT=null;const CRYPTO=!!(window.crypto&&crypto.subtle);
+function b64(u){u=new Uint8Array(u);let s="";for(let i=0;i<u.length;i++)s+=String.fromCharCode(u[i]);return btoa(s)}
+const unb=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
+async function derive(pass,salt){const k=await crypto.subtle.importKey("raw",new TextEncoder().encode(pass),"PBKDF2",false,["deriveKey"]);return crypto.subtle.deriveKey({name:"PBKDF2",salt,iterations:250000,hash:"SHA-256"},k,{name:"AES-GCM",length:256},false,["encrypt","decrypt"])}
+async function encObj(key,o){const iv=crypto.getRandomValues(new Uint8Array(12)),ct=await crypto.subtle.encrypt({name:"AES-GCM",iv},key,new TextEncoder().encode(JSON.stringify(o)));return b64(iv)+"."+b64(ct)}
+async function decObj(key,s){const[i,c]=s.split(".");return JSON.parse(new TextDecoder().decode(await crypto.subtle.decrypt({name:"AES-GCM",iv:unb(i)},key,unb(c))))}
+let pq=Promise.resolve();
+function persist(){pq=pq.then(async()=>{if(KEY)LS.set("caagent.vault",{s:b64(SALT),d:await encObj(KEY,{M,DOCS,AUD})});else{LS.set("caagent.masters",M);LS.set("caagent.docs",DOCS);LS.set("caagent.audit",AUD)}}).catch(e=>alert("Save failed: "+e.message));return pq}
+async function sha(s){try{const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(s));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("")}catch(e){let h=5381;for(const c of s)h=(h*33^c.charCodeAt(0))>>>0;return"x"+h.toString(16)}}
+async function audit(action,no){const prev=AUD.length?AUD[AUD.length-1].hash:"genesis",ts=new Date().toISOString().slice(0,19);AUD.push({ts,action,no,hash:await sha(prev+"|"+ts+"|"+action+"|"+no)});}
+function dl(name,text,mime){const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([text],{type:mime}));a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),2000)}
+const fname=n=>n.replace(/\//g,"_");
+
+/* navigation */
+function show(p){$$(".page").forEach(e=>e.classList.toggle("on",e.id==="p-"+p));$$("#nav button").forEach(b=>b.classList.toggle("on",b.dataset.p===p));
+ if(p==="new"){fillParties();fillItems()}if(p==="items")renderItemsPage();if(p==="reg")renderReg();if(p==="docs")renderDocs();if(p==="set")renderSettings()}
+$("#nav").onclick=e=>{if(e.target.dataset.p)show(e.target.dataset.p)};
+
+const setupOk=()=>!!(M.seller.name&&GRE.test(M.seller.gstin||"")&&/^\d{6}$/.test(M.seller.pincode||""));
+const COPIES=["ORIGINAL FOR RECIPIENT","DUPLICATE FOR TRANSPORTER","TRIPLICATE FOR SUPPLIER"];
+function printDoc(d,copies){const w=window.open("","_blank");if(!w)return alert("Please allow pop-ups to print.");w.document.write(invoiceHTML(d,copies));w.document.close();w.focus();setTimeout(()=>w.print(),400)}
+/* new document */
+const newItem=()=>({description:"",hsn:"",qty:1,unit:"NOS",rate:"",disc:"",gst_rate:""});
+let items=[newItem()],pending=null;
+const fillParties=()=>{const k=Object.keys(M.parties),cur=$("#party").value;$("#party").innerHTML=k.map(n=>`<option value="${esc(n)}">${esc(n.replace(/\b\w/g,c=>c.toUpperCase()))}</option>`).join("");if(k.includes(cur))$("#party").value=cur};
+function renderItems(){$("#items").innerHTML="<tr><th>Description</th><th>HSN</th><th>Qty</th><th>Unit</th><th>Rate (₹)</th><th>Disc %</th><th>GST %</th><th></th></tr>"+
+ items.map((it,i)=>`<tr>${["description","hsn","qty","unit","rate","disc","gst_rate"].map(k=>k==="unit"?`<td><select data-i="${i}" data-k="unit">${UQC.map(u=>`<option${u===it.unit?" selected":""}>${u}</option>`).join("")}</select></td>`:`<td><input data-i="${i}" data-k="${k}" value="${esc(it[k])}" ${k==="description"?'list="itemlist" placeholder="Select from Item master"':k==="hsn"?'readonly placeholder="auto"':""} ${["qty","rate","disc","gst_rate"].includes(k)?'inputmode="decimal"':""}></td>`).join("")}<td><button class="b" data-del="${i}">✕</button></td></tr>`).join("")}
+$("#items").oninput=e=>{const t=e.target;if(t.dataset.k)items[+t.dataset.i][t.dataset.k]=t.value};
+$("#items").onclick=e=>{if(e.target.dataset.del!=null){items.splice(+e.target.dataset.del,1);if(!items.length)items.push(newItem());renderItems()}};
+$("#items").onchange=e=>{const t=e.target;if(t.dataset.k!=="description")return;const it=items[+t.dataset.i],mi=M.items.find(x=>x.name.toLowerCase()===t.value.trim().toLowerCase());
+ if(mi){it.description=mi.name;it.hsn=mi.hsn;it.unit=mi.unit;if(String(it.rate)==="")it.rate=mi.rate??"";it.gst_rate=mi.gst}else{it.hsn=""}renderItems()};
+const fillItems=()=>{$("#itemlist").innerHTML=M.items.map(x=>`<option value="${esc(x.name)}">`).join("")};
+$("#addRow").onclick=()=>{items.push(newItem());renderItems()};
+$("#type").onchange=()=>$$(".cn").forEach(e=>e.hidden=$("#type").value==="invoice");
+$("#preview").onclick=()=>{
+ $("#savedBox").innerHTML="";const box=$("#previewBox");
+ if(!setupOk())return box.innerHTML='<div class="w">First complete "Your business" in Settings (name, valid GSTIN, 6-digit pincode).</div>';
+ const num=v=>String(v).trim()===""?NaN:+v;
+ const its=items.filter(i=>i.description.trim()).map(i=>({description:i.description.trim(),hsn:String(i.hsn||"").trim(),qty:num(i.qty),unit:i.unit||"NOS",rate:num(i.rate),disc:String(i.disc).trim()===""?0:+i.disc,gst_rate:String(i.gst_rate).trim()===""?null:+i.gst_rate}));
+ if(!$("#party").value)return box.innerHTML='<div class="w">Add a party in Settings first.</div>';
+ if(!its.length)return box.innerHTML='<div class="w">Add at least one item.</div>';
+ if(!$("#date").value)return box.innerHTML='<div class="w">Choose a date.</div>';
+ const km=+$("#km").value||0;
+ try{pending=compute({party_name:$("#party").value,doc_type:$("#type").value,date:$("#date").value,original_invoice_no:$("#orig").value.trim()||null,reason:$("#reason").value.trim()||null,items:its,
+  transport:km?{distance_km:km,vehicle_no:$("#veh").value.trim(),transporter_id:$("#trn").value.trim()}:null},M,DOCS)}catch(err){return box.innerHTML='<div class="w">'+esc(err.message)+"</div>"}
+ const d=pending;d.no="DRAFT";
+ box.innerHTML=`<div class="card"><h2>Preview</h2>${d.warnings.map(w=>`<div class="w">${esc(w)}</div>`).join("")||'<div class="ok">No warnings.</div>'}
+ <div class="metrics"><div><small>Taxable</small><b>${inr(d.taxable)}</b></div><div><small>CGST</small><b>${inr(d.cgst)}</b></div><div><small>SGST</small><b>${inr(d.sgst)}</b></div><div><small>IGST</small><b>${inr(d.igst)}</b></div><div><small>Total ₹</small><b>${inr(d.total)}</b></div></div>
+ <iframe id="pv"></iframe>${d.warnings.length?'<p><label style="flex-direction:row;gap:8px;color:inherit"><input type="checkbox" id="ack" style="width:auto"> I have reviewed the warnings and approve this document</label></p>':""}
+ <div class="row"><button class="b pri" id="approve">✅ Approve &amp; Save</button></div></div>`;
+ $("#pv").srcdoc=invoiceHTML(d);
+ $("#approve").onclick=async()=>{if(d.warnings.length&&!$("#ack").checked)return alert("Please tick the review box first.");
+  d.no=nextNo(d.type,d.date,DOCS);DOCS.push(d);await audit("APPROVED",d.no);persist();box.innerHTML="";showSaved(d)}};
+function showSaved(d){const ew=eway(d),n=fname(d.no);$("#savedBox").innerHTML=`<div class="card"><div class="ok">Saved <b>${esc(d.no)}</b></div><div class="row">
+ <button class="b pri" id="d1">Download invoice (HTML)</button><button class="b" id="d2">Print / Save as PDF</button>${d.type==="invoice"?'<button class="b" id="d6">Print 3 copies</button>':""}<button class="b" id="d3">Download JSON</button>${ew?'<button class="b" id="d4">Download e-way bill JSON</button>':""}<button class="b" id="d5">Create another</button></div></div>`;
+ $("#d1").onclick=()=>dl(n+".html",invoiceHTML(d),"text/html");$("#d3").onclick=()=>dl(n+".json",JSON.stringify(d,null,1),"application/json");
+ $("#d2").onclick=()=>printDoc(d,[COPIES[0]]);if(d.type==="invoice")$("#d6").onclick=()=>printDoc(d,COPIES);
+ if(ew)$("#d4").onclick=()=>dl(n+"_eway.json",JSON.stringify(ew,null,1),"application/json");
+ $("#d5").onclick=()=>{$("#savedBox").innerHTML="";items=[newItem()];renderItems();$("#orig").value=$("#reason").value="";$("#km").value=$("#veh").value=$("#trn").value=""}}
+
+/* item master */
+const fillUnits=()=>{if(!$("#i-unit").options.length)$("#i-unit").innerHTML=UQC.map(u=>`<option>${u}</option>`).join("")};
+function renderItemsPage(){fillUnits();$("#i-list").innerHTML=M.items.length?`<div class="scroll"><table><tr><th>Item</th><th>HSN</th><th>Unit</th><th>Rate</th><th>GST %</th><th>HSN check</th><th></th></tr>${M.items.map((x,i)=>`<tr><td>${esc(x.name)}</td><td>${x.hsn}</td><td>${x.unit}</td><td>${x.rate??""}</td><td>${x.gst}</td><td>${x.verified==="directory"?"Matched":"Confirmed by you"}</td><td><button class="b" data-idel="${i}">✕</button></td></tr>`).join("")}</table></div>`:'<p class="note">No items yet. Add your first item above.</p>'}
+const sugHTML=l=>l.map(e=>`<div style="margin:6px 0"><button class="b" data-pick="${e.h}">${e.h}</button> ${esc(e.d)}${e.n?`<div class="w">${esc(e.n)}</div>`:""}</div>`).join("");
+$("#i-suggest").onclick=()=>{const n=$("#i-name").value.trim();if(!n)return $("#i-sug").innerHTML='<div class="w">Type the item name first.</div>';const s=suggestHSN(n);
+ $("#i-sug").innerHTML=s.length?"<p class=note>Suggested HSN (click to use):</p>"+sugHTML(s):'<div class="w">No match in the starter directory. Search the official GST portal using the link above.</div>'};
+$("#i-sug").onclick=e=>{if(e.target.dataset.pick)$("#i-hsn").value=e.target.dataset.pick};
+$("#i-save").onclick=()=>{const name=$("#i-name").value.trim(),hsn=$("#i-hsn").value.trim(),msg=m=>$("#i-msg").innerHTML='<div class="w">'+m+"</div>";
+ if(!name)return msg("Enter the item name.");if(!/^(\d{4}|\d{6}|\d{8})$/.test(hsn))return msg("HSN must be 4, 6 or 8 digits.");
+ const need=M.seller.turnover5cr?6:4;if(hsn.length<need)return msg("Your turnover is above ₹5 crore, so HSN needs at least 6 digits.");
+ const gst=$("#i-gst").value.trim();if(gst===""||isNaN(+gst))return msg("Enter the GST % for this item.");
+ if(M.items.some(x=>x.name.toLowerCase()===name.toLowerCase()))return msg("This item already exists.");
+ const c=hsnCheck(name,hsn);let verified="directory";
+ if(!c.ok){if(!$("#i-ovr").checked){$("#i-ovr-l").hidden=false;$("#i-msg").innerHTML='<div class="w">'+esc(c.msg)+" Pick a suggested code below, or tick the box after verifying on the GST portal.</div>";$("#i-sug").innerHTML=c.sug.length?"<p class=note>Suggested HSN:</p>"+sugHTML(c.sug):"";return}verified="manual"}
+ M.items.push({name,hsn,unit:$("#i-unit").value,rate:$("#i-rate").value.trim()===""?null:+$("#i-rate").value,gst:+gst,verified});persist();
+ $("#i-msg").innerHTML='<div class="ok">Saved.</div>'+(c.ok&&c.e.n?'<div class="w">'+esc(c.e.n)+"</div>":"");$("#i-ovr-l").hidden=true;$("#i-ovr").checked=false;$("#i-sug").innerHTML="";
+ $("#i-name").value=$("#i-hsn").value=$("#i-rate").value=$("#i-gst").value="";renderItemsPage()};
+$("#i-list").onclick=e=>{const i=e.target.dataset.idel;if(i!=null&&confirm("Remove this item from the list? Existing bills are not affected.")){M.items.splice(+i,1);persist();renderItemsPage()}};
+$("#d-q").oninput=()=>{const q=$("#d-q").value.trim();if(!q){$("#d-res").innerHTML="";return}const r=/^\d+$/.test(q)?HSNDIR.filter(e=>e.h.startsWith(q)).slice(0,8):suggestHSN(q);$("#d-res").innerHTML=r.length?sugHTML(r):'<p class="note">No match.</p>'};
+/* register */
+function renderReg(){if(!DOCS.length){$("#regBox").innerHTML='<p class="note">No documents yet.</p>';return}
+ const sg={invoice:1,credit_note:-1,debit_note:1},agg={};
+ for(const d of DOCS)for(const l of d.lines){const r=agg[l.gst_rate]=agg[l.gst_rate]||[0,0,0,0];r[0]+=sg[d.type]*l.taxable;r[1]+=sg[d.type]*l.cgst;r[2]+=sg[d.type]*l.sgst;r[3]+=sg[d.type]*l.igst}
+ const ks=Object.keys(agg).sort((a,b)=>a-b),tot=[0,0,0,0];ks.forEach(k=>agg[k].forEach((v,i)=>tot[i]+=v));
+ $("#regBox").innerHTML=`<div class="scroll"><table><tr><th>GST %</th><th>Taxable</th><th>CGST</th><th>SGST</th><th>IGST</th></tr>${ks.map(k=>`<tr><td>${k}</td>${agg[k].map(v=>`<td>${inr(v)}</td>`).join("")}</tr>`).join("")}<tr><th>Total</th>${tot.map(v=>`<th>${inr(v)}</th>`).join("")}</tr></table></div><div class="row"><button class="b" id="csv">Download CSV</button></div>`;
+ $("#csv").onclick=()=>dl("register.csv","GST %,Taxable,CGST,SGST,IGST\n"+ks.map(k=>[k,...agg[k].map(v=>(v/100).toFixed(2))].join(",")).join("\n")+"\nTotal,"+tot.map(v=>(v/100).toFixed(2)).join(","),"text/csv")}
+
+/* documents */
+function renderDocs(){$("#docView").innerHTML="";const L=[...DOCS].sort((a,b)=>(b.date+b.no).localeCompare(a.date+a.no));
+ $("#docList").innerHTML=L.length?`<div class="scroll"><table><tr><th>No</th><th>Type</th><th>Date</th><th>Party</th><th>Total ₹</th><th></th></tr>${L.map(d=>`<tr><td>${esc(d.no)}</td><td>${esc(d.type.replace("_"," "))}</td><td>${d.date}</td><td>${esc(d.party_name)}</td><td>${inr(d.total)}</td><td><button class="b" data-v="${esc(d.no)}">View</button></td></tr>`).join("")}</table></div>`:'<p class="note">No documents yet.</p>'}
+$("#docList").onclick=e=>{const no=e.target.dataset.v;if(!no)return;const d=DOCS.find(x=>x.no===no),ew=eway(d),n=fname(no);
+ $("#docView").innerHTML=`<div class="card"><iframe id="dv"></iframe><div class="row"><button class="b pri" id="v1">Print / Save as PDF</button>${d.type==="invoice"?'<button class="b" id="v4">Print 3 copies</button>':""}<button class="b" id="v2">Download HTML</button>${ew?'<button class="b" id="v3">Download e-way bill JSON</button>':""}</div></div>`;
+ $("#dv").srcdoc=invoiceHTML(d);$("#v1").onclick=()=>printDoc(d,[COPIES[0]]);if(d.type==="invoice")$("#v4").onclick=()=>printDoc(d,COPIES);$("#v2").onclick=()=>dl(n+".html",invoiceHTML(d),"text/html");
+ if(ew)$("#v3").onclick=()=>dl(n+"_eway.json",JSON.stringify(ew,null,1),"application/json");$("#docView").scrollIntoView()};
+
+/* settings */
+let P=[],H=[];
+function renderSettings(){const s=M.seller;$("#s-name").value=s.name;$("#s-gstin").value=s.gstin;$("#s-pin").value=s.pincode;$("#s-place").value=s.place||"";$("#s-addr").value=s.address||"";$("#s-bn").value=s.bank_name||"";$("#s-ac").value=s.bank_ac||"";$("#s-ifsc").value=s.bank_ifsc||"";$("#s-br").value=s.bank_branch||"";$("#s-terms").value=s.terms||"";$("#s-t5").checked=!!s.turnover5cr;
+ P=Object.entries(M.parties).map(([k,v])=>({name:k,gstin:v.gstin||"",state:v.state||"",pincode:v.pincode||"",place:v.place||"",address:v.address||""}));H=Object.entries(M.hsn_rates||{}).map(([k,v])=>({hsn:k,rate:v}));drawP();drawH()}
+const drawP=()=>$("#parties").innerHTML="<tr><th>Name</th><th>GSTIN (blank if unregistered)</th><th>State code (if no GSTIN)</th><th>Pincode</th><th>City</th><th>Address</th><th></th></tr>"+P.map((p,i)=>`<tr>${["name","gstin","state","pincode","place","address"].map(k=>`<td><input data-pi="${i}" data-k="${k}" value="${esc(p[k])}"></td>`).join("")}<td><button class="b" data-pd="${i}">✕</button></td></tr>`).join("");
+const drawH=()=>$("#hsn").innerHTML="<tr><th>HSN</th><th>GST %</th><th></th></tr>"+H.map((h,i)=>`<tr>${["hsn","rate"].map(k=>`<td><input data-hi="${i}" data-k="${k}" value="${esc(h[k])}"></td>`).join("")}<td><button class="b" data-hd="${i}">✕</button></td></tr>`).join("");
+$("#parties").oninput=e=>{if(e.target.dataset.pi!=null)P[+e.target.dataset.pi][e.target.dataset.k]=e.target.value};
+$("#hsn").oninput=e=>{if(e.target.dataset.hi!=null)H[+e.target.dataset.hi][e.target.dataset.k]=e.target.value};
+$("#parties").onclick=e=>{if(e.target.dataset.pd!=null){P.splice(+e.target.dataset.pd,1);drawP()}};
+$("#hsn").onclick=e=>{if(e.target.dataset.hd!=null){H.splice(+e.target.dataset.hd,1);drawH()}};
+$("#addParty").onclick=()=>{P.push({name:"",gstin:"",state:"",pincode:"",place:"",address:""});drawP()};$("#addHsn").onclick=()=>{H.push({hsn:"",rate:""});drawH()};
+const norm=s=>String(s||"").toLowerCase().replace(/&/g,"and").replace(/[^a-z ]/g,"").trim();
+const sameState=(a,b)=>{a=norm(a);b=norm(b);return a.includes(b)||b.includes(a)};
+async function fj(url){const c=new AbortController(),tm=setTimeout(()=>c.abort(),7000);try{const r=await fetch(url,{signal:c.signal,referrerPolicy:"no-referrer",credentials:"omit"});if(r.status===404)return{nf:1};if(!r.ok)return{err:1};return{j:await r.json()}}catch(e){return{err:1}}finally{clearTimeout(tm)}}
+async function lookupIFSC(c){const r=await fj("https://ifsc.razorpay.com/"+c);if(r.nf)return{nf:1};if(r.err||!r.j||!r.j.BANK)return{err:1};return{ok:1,bank:r.j.BANK,branch:r.j.BRANCH,city:r.j.CITY}}
+async function lookupPin(p){const r=await fj("https://api.postalpincode.in/pincode/"+p);if(r.err||!Array.isArray(r.j))return{err:1};const x=r.j[0];if(x&&x.Status==="Success"&&x.PostOffice&&x.PostOffice.length)return{ok:1,state:x.PostOffice[0].State,district:x.PostOffice[0].District};return x&&/no records/i.test(x.Message||"")?{nf:1}:{err:1}}
+$("#saveSet").onclick=async()=>{const parties={},bad=[];
+ P.filter(p=>p.name.trim()).forEach(p=>{parties[p.name.trim().toLowerCase()]={gstin:p.gstin.trim().toUpperCase(),state:p.state.trim(),pincode:p.pincode.trim(),place:p.place.trim(),address:p.address.trim()}});
+ const hsn={};H.filter(h=>String(h.hsn).trim()&&String(h.rate).trim()!=="").forEach(h=>hsn[String(h.hsn).trim()]=+h.rate);
+ M={seller:{name:$("#s-name").value.trim(),gstin:$("#s-gstin").value.trim().toUpperCase(),pincode:$("#s-pin").value.trim(),place:$("#s-place").value.trim(),address:$("#s-addr").value.trim(),bank_name:$("#s-bn").value.trim(),bank_ac:$("#s-ac").value.trim(),bank_ifsc:$("#s-ifsc").value.trim().toUpperCase(),bank_branch:$("#s-br").value.trim(),terms:$("#s-terms").value.trim(),turnover5cr:$("#s-t5").checked},parties,hsn_rates:hsn,items:M.items||[]};persist();
+ if(!M.seller.name)bad.push("Business name is required");
+ if(!GRE.test(M.seller.gstin))bad.push("Your GSTIN is not a valid 15-character GSTIN");else if(!gstinOk(M.seller.gstin))bad.push("Your GSTIN fails the checksum. Please re-check it");
+ if(!/^\d{6}$/.test(M.seller.pincode))bad.push("Your pincode must be 6 digits");
+ Object.entries(parties).forEach(([k,v])=>{if(v.gstin){if(!GRE.test(v.gstin))bad.push(k+": invalid GSTIN format");else if(!gstinOk(v.gstin))bad.push(k+": GSTIN fails checksum")}else if(!/^\d{2}$/.test(v.state))bad.push(k+": enter GSTIN, or a 2-digit state code if unregistered")});
+ $("#setMsg").innerHTML='<div class="note">Checking details...</div>';
+ const notes=[],s=M.seller,sc=s.gstin.slice(0,2);
+ if(GRE.test(s.gstin)&&!"ABCFGHLJPTK".includes(s.gstin[5]))bad.push("Your GSTIN has an invalid PAN type letter ("+s.gstin[5]+")");
+ if(GRE.test(s.gstin)&&!STATES[sc])bad.push("Your GSTIN has an unknown state code "+sc);
+ if(GRE.test(s.gstin)&&gstinOk(s.gstin))notes.push("GSTIN passes format and checksum. It cannot be confirmed against the GST portal from this page, so verify it once on the portal (link below).");
+ if(s.bank_ac&&!/^\d{9,18}$/.test(s.bank_ac))bad.push("Bank account number must be 9 to 18 digits");
+ else if(s.bank_ac)notes.push("Bank account number: format only. Nothing free can confirm an account holder, so keep a cancelled cheque on file.");
+ if(s.bank_ifsc){if(!/^[A-Z]{4}0[A-Z0-9]{6}$/.test(s.bank_ifsc))bad.push("IFSC format is invalid");else{const r=await lookupIFSC(s.bank_ifsc);
+  if(r.ok){notes.push("IFSC verified online: "+r.bank+", "+r.branch+", "+r.city);if(!s.bank_name)s.bank_name=r.bank;if(!s.bank_branch)s.bank_branch=r.branch+", "+r.city;
+   if(!sameState(r.bank.split(" ")[0],s.bank_name.split(" ")[0]))bad.push("IFSC belongs to "+r.bank+" but the bank name entered is '"+s.bank_name+"'")}
+  else if(r.nf)bad.push("IFSC "+s.bank_ifsc+" was not found in the IFSC directory");else notes.push("IFSC could not be checked online right now (format is fine).")}}
+ const pins=[["Your business",s.pincode,sc]];Object.entries(parties).forEach(([k,v])=>pins.push([k,v.pincode,stateOf(v)]));
+ for(const[w,pin,code]of pins){if(!/^\d{6}$/.test(pin||""))continue;const r=await lookupPin(pin);
+  if(r.nf)bad.push(w+": pincode "+pin+" does not exist");
+  else if(r.ok){if(STATES[code]&&!sameState(r.state,STATES[code]))bad.push(w+": pincode "+pin+" is in "+r.state+" but its state code "+code+" is "+STATES[code]);else notes.push(w+": pincode verified ("+r.district+", "+r.state+")")}
+  else{notes.push(w+": pincode could not be checked online right now.");break}}
+ persist();
+ $("#setMsg").innerHTML=(bad.length?"":'<div class="ok">Saved. You are ready to create documents.</div>')+bad.map(b=>`<div class="w">${esc(b)}</div>`).join("")+(bad.length?'<div class="note">Saved, but fix the points above before relying on documents.</div>':"")+notes.map(n=>`<div class="note">✓ ${esc(n)}</div>`).join("")+'<p><a href="https://services.gst.gov.in/services/searchtp" target="_blank" rel="noopener noreferrer">Verify a GSTIN on the official GST portal ↗</a></p>';
+ fillParties()};
+$("#export").onclick=async()=>{await pq;const v=KEY?LS.get("caagent.vault",null):null;dl("audit-ace-backup-"+new Date().toISOString().slice(0,10)+(v?".encrypted":"")+".json",JSON.stringify(v||{v:1,masters:M,docs:DOCS,audit:AUD}),"application/json")};
+$("#import").onchange=async e=>{const f=e.target.files[0];if(!f)return;try{let j=JSON.parse(await f.text());
+ if(j.s&&j.d){const p=prompt("Enter the passcode this backup was created with:");const o=await decObj(await derive(p||"",unb(j.s)),j.d);j={masters:o.M,docs:o.DOCS,audit:o.AUD}}
+ if(!j.masters||!j.docs)throw 0;if(!confirm("Replace ALL current data with this backup?"))return;M=j.masters;M.items=M.items||[];DOCS=j.docs;AUD=j.audit||[];await persist();renderSettings();$("#safeMsg").innerHTML='<div class="ok">Backup restored.</div>'}catch(x){$("#safeMsg").innerHTML='<div class="w">Could not read this backup (wrong passcode or invalid file).</div>'}e.target.value=""};
+$("#verify").onclick=async()=>{let prev="genesis";for(const a of AUD){if(a.hash!==await sha(prev+"|"+a.ts+"|"+a.action+"|"+a.no)){$("#safeMsg").innerHTML='<div class="w">Audit log FAILED verification (entry '+esc(a.no)+").</div>";return}prev=a.hash}$("#safeMsg").innerHTML=`<div class="ok">Audit log intact (${AUD.length} entries).</div>`};
+$("#wipe").onclick=()=>{if(prompt('This deletes all documents and settings from this browser. Type ERASE to confirm.')==="ERASE"){["masters","docs","audit","vault","fails"].forEach(k=>localStorage.removeItem("caagent."+k));idbDel().finally(()=>location.reload())}};
+
+/* init */
+function startApp(){$("#hero").hidden=true;$("#app").hidden=false;M.items=M.items||[];$("#date").value=new Date().toLocaleDateString("en-CA");renderItems();fillParties();fillItems();
+ if(!setupOk()){show("set");$("#setMsg").innerHTML='<div class="w">Welcome! Enter your business details and add your customers below to get started. Everything stays in this browser.</div>'}
+ let idle;const bump=()=>{clearTimeout(idle);if(KEY)idle=setTimeout(()=>forgetAndReload(),10*60*1000)};["click","keydown","touchstart"].forEach(ev=>addEventListener(ev,bump));bump()}
+const FAILK="caagent.fails";
+const idb=()=>new Promise((res,rej)=>{const r=indexedDB.open("caagent",1);r.onupgradeneeded=()=>r.result.createObjectStore("k");r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)});
+async function idbGet(){try{const d=await idb();return await new Promise(res=>{const q=d.transaction("k").objectStore("k").get("key");q.onsuccess=()=>res(q.result||null);q.onerror=()=>res(null)})}catch(e){return null}}
+async function idbSet(v){try{const d=await idb();await new Promise(res=>{const x=d.transaction("k","readwrite");x.objectStore("k").put(v,"key");x.oncomplete=res;x.onerror=res})}catch(e){}}
+async function idbDel(){try{const d=await idb();await new Promise(res=>{const x=d.transaction("k","readwrite");x.objectStore("k").delete("key");x.oncomplete=res;x.onerror=res})}catch(e){}}
+const remember=()=>idbSet({key:KEY,s:b64(SALT),exp:Date.now()+12*3600*1000});
+async function forgetAndReload(){await idbDel();location.reload()}
+$("#lockNow").onclick=forgetAndReload;
+$("#pc-go").onclick=async()=>{const say=(m,c)=>$("#pc-msg").innerHTML=`<div class="${c||"w"}">${m}</div>`;if(!KEY)return say("No passcode is set on this device.");
+ const n1=$("#pc-1").value;if(n1.length<10)return say("New passcode must be at least 10 characters.");if(n1!==$("#pc-2").value)return say("New passcodes do not match.");
+ try{await pq;const v=LS.get("caagent.vault");await decObj(await derive($("#pc-0").value,unb(v.s)),v.d)}catch(e){return say("Current passcode is wrong.")}
+ SALT=crypto.getRandomValues(new Uint8Array(16));KEY=await derive(n1,SALT);await persist();await idbDel();$("#pc-0").value=$("#pc-1").value=$("#pc-2").value="";say("Passcode changed. Use the new passcode next time. Older backups still need the passcode they were made with.","ok")};
+async function boot(){
+ const lk=$("#lock"),say=m=>$("#lk-m").innerHTML='<div class="w">'+m+"</div>";lk.style.display="flex";
+ if(!CRYPTO){$("#lk-t").textContent="Secure storage unavailable";$("#lk-p").textContent="This browser cannot encrypt data here. Open the site over https in a current browser (Chrome, Edge, Firefox or Safari).";$("#lk-1").parentElement.hidden=true;$("#lk-go").hidden=true;return}
+ const vault=LS.get("caagent.vault",null),done=()=>{lk.style.display="none";startApp()};
+ if(vault){try{const r=await idbGet();if(r&&r.exp>Date.now()&&r.s===vault.s){const o=await decObj(r.key,vault.d);SALT=unb(vault.s);KEY=r.key;M=o.M;DOCS=o.DOCS;AUD=o.AUD;return done()}if(r)await idbDel()}catch(e){await idbDel()}}
+ $("#lk-rl").hidden=false;
+ if(vault){$("#lk-t").textContent="Unlock Audit-Ace";$("#lk-p").textContent="Enter your passcode to decrypt your data.";$("#lk-fg").hidden=false}
+ else{$("#lk-t").textContent="Set a passcode";$("#lk-p").textContent="Your invoices, customers and bank details will be encrypted in this browser with this passcode, and only this exact passcode will open them. If you forget it the data cannot be recovered, so keep a backup. Use 10+ characters.";$("#lk-2l").hidden=false}
+ $("#lk-go").onclick=async()=>{const p=$("#lk-1").value;$("#lk-m").innerHTML="";const f=LS.get(FAILK,{n:0,until:0});
+  if(vault&&Date.now()<f.until)return say("Too many wrong attempts. Try again in "+Math.ceil((f.until-Date.now())/1000)+" seconds.");
+  if(!vault){if(p.length<10)return say("Use at least 10 characters.");if(p!==$("#lk-2").value)return say("Passcodes do not match.");
+   SALT=crypto.getRandomValues(new Uint8Array(16));KEY=await derive(p,SALT);await persist();["masters","docs","audit"].forEach(k=>localStorage.removeItem("caagent."+k));if($("#lk-rem").checked)await remember();done()}
+  else{try{const s=unb(vault.s),k=await derive(p,s),o=await decObj(k,vault.d);SALT=s;KEY=k;M=o.M;DOCS=o.DOCS;AUD=o.AUD;LS.set(FAILK,{n:0,until:0});if($("#lk-rem").checked)await remember();done()}
+   catch(e){const n=f.n+1;LS.set(FAILK,{n,until:n>=5?Date.now()+Math.min(30000*2**(n-5),900000):0});say(n>=5?"Wrong passcode. Locked for a short time after repeated failures.":"Wrong passcode ("+(5-n)+" tries left before a temporary lockout).")}}};
+ $("#lk-1").onkeydown=$("#lk-2").onkeydown=e=>{if(e.key==="Enter")$("#lk-go").click()};
+ $("#lk-erase").onclick=e=>{e.preventDefault();if(prompt("This permanently deletes ALL data on this device. Type ERASE to confirm.")==="ERASE"){["masters","docs","audit","vault","fails"].forEach(k=>localStorage.removeItem("caagent."+k));idbDel().finally(()=>location.reload())}}}
+$("#startBtn").onclick=boot;if(LS.get("caagent.vault",null)||location.hash==="#app"){$("#hero").hidden=true;boot()}
+</script></body></html>

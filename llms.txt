@@ -1,0 +1,51 @@
+# Audit-Ace
+
+> Audit-Ace is a free, browser-based GST billing tool for Indian businesses and accountants. It creates Tally-style tax invoices, credit notes and debit notes, checks GSTIN and HSN details, and exports e-way bill JSON. All data is encrypted in the user's own browser; there is no account and no server-side storage.
+
+URL: https://gupta-krishan.github.io/Audit-Ace/
+
+## What it does
+- Tally-style tax invoices: A4 invoice with consignee and buyer blocks, place of supply, HSN-wise tax summary, amount in words and Original, Duplicate and Triplicate copies.
+- Credit and debit notes: Notes linked to the original invoice, with the Section 34 CGST time-limit check.
+- HSN item master: Save items with HSN codes, get suggestions, and block bills where the HSN does not match the item.
+- GSTIN, IFSC and pincode checks: GSTIN checksum and state validation, plus online IFSC and pincode lookups.
+- E-way bill JSON: Export JSON for the e-way bill portal on goods invoices above 50,000 rupees.
+- Private by design: Passcode-encrypted storage in your browser, lockout after wrong attempts, auto-lock and encrypted backups.
+- Sales register: Net sales by GST rate with credit notes subtracted, downloadable as CSV.
+
+## What it does not do
+- It does not file GST returns, generate e-invoice IRNs, handle purchase bills or cover services (SAC).
+- It does not file e-way bills; it produces JSON for upload on the official e-way bill portal.
+- GSTIN is checked for format, checksum and state code only, not against the GST portal. Bank account numbers are checked for format only.
+- It is a billing aid, not tax or legal advice. Verify rates and HSN codes on the official GST portal.
+
+## Frequently asked questions
+### What is Audit-Ace?
+Audit-Ace is a browser-based GST billing tool for Indian businesses and accountants. It creates tax invoices, credit notes and debit notes in a Tally-style layout, checks GSTIN and HSN details, and exports e-way bill JSON. Your data is encrypted in your own browser.
+
+### Is Audit-Ace free, and do I need an account?
+Audit-Ace is currently free to use and needs no account or signup. You set a passcode on your own device, and your invoices, customers and bank details stay encrypted in your browser rather than on a server.
+
+### Is my accounting data safe?
+Your data is encrypted with AES-256 using a key derived from your passcode, and only the exact passcode opens it. The page can only contact two public lookup services, for IFSC and pincode, and never sends your invoices. If you forget the passcode, the data cannot be recovered, so keep an encrypted backup.
+
+### Can I create GST credit notes and debit notes?
+Yes. Audit-Ace creates credit notes and debit notes linked to the original invoice, with its own number series. It warns when a credit note is dated after 30 November following the financial year of the original invoice, which is the general Section 34 CGST time limit.
+
+### Does Audit-Ace generate e-way bills?
+It prepares the e-way bill JSON file for invoices of goods above 50,000 rupees, which you upload on the official e-way bill portal. It does not file the e-way bill for you. Transport distance, vehicle number and the place of both parties are needed.
+
+### How does HSN code checking work?
+Every item on a bill must come from your Item Master with a saved HSN code, and the code is matched against the item name. A bill is blocked if the HSN is missing or does not fit the item. A starter directory of common goods suggests codes, and you can confirm others after checking the GST portal.
+
+### What is the GST rate on clothes in India in 2026?
+Since 22 September 2025, readymade garments priced up to 2,500 rupees per piece are taxed at 5 percent, and those above 2,500 rupees per piece at 18 percent. Audit-Ace warns when the rate entered does not match this rule for garment HSN codes.
+
+### Does Audit-Ace file GST returns or generate e-invoice IRNs?
+No. Audit-Ace does not file GST returns, generate e-invoice IRNs or handle purchase bills, and it covers goods, not services. It produces invoices, notes, a sales register and e-way bill JSON, and it is not a substitute for professional tax advice.
+
+### What does Audit-Ace verify online?
+It looks up IFSC codes and pincodes against public directories and fills in bank and branch details. GSTIN is checked for format, checksum and state code, but not against the GST portal. Bank account numbers are checked for format only.
+
+Last updated: 2026-11-12
+Main page: https://gupta-krishan.github.io/Audit-Ace/
